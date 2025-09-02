@@ -1,0 +1,9 @@
+<tr class="contact-row">
+    <td>{{contact.name}}</td>
+    <td>{{contact.phoneNumber}}</td>
+    <td *ngFor="let tag of tags">{{tag}}</td>
+    <td>Edit</td>
+    <td>Delete</td>
+    <td>View Details</td>
+</tr>
+<router-outlet></router-outlet>

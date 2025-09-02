@@ -1,0 +1,70 @@
+header {
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 2rem;
+    background-color: #F3F4F6; // Light background
+    font-family: 'Arial', sans-serif;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1); // subtle shadow
+
+    .title-box {
+      .title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #1E40AF; // deep purple
+        transition: color 0.3s;
+
+        &:hover {
+          color: #3B82F6; // secondary purple on hover
+          cursor: pointer; 
+        }
+      }
+    }
+
+    .menu-list {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex: 1;
+
+      .menu-item {
+        color: #3B82F6; // accent blue
+        text-decoration: none;
+        font-weight: 500;
+        padding: 0.3rem 0.6rem;
+        border-radius: 0.3rem;
+        transition: all 0.3s;
+
+        &:hover {
+          background-color: #EFF6FF; // very light blue hover bg
+          color: #1E40AF; // deep purple text on hover
+          transform: translateY(-2px);
+          border-bottom: 1px solid #1E40AF;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+          cursor: pointer;
+        }
+      }
+    }
+
+    .signout {
+      color: #1E40AF; // deep purple
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.3rem 0.6rem;
+      border-radius: 0.3rem;
+      transition: all 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #2563EB; // secondary purple
+        color: #F3F4F6; // light text
+        transform: translateY(-2px);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      }
+    }
+  }
+}

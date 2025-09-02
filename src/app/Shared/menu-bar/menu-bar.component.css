@@ -1,0 +1,59 @@
+header .nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 2rem;
+  background-color: #F3F4F6;
+  font-family: "Arial", sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+header .nav-bar .title-box .title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1E40AF;
+  transition: color 0.3s;
+}
+header .nav-bar .title-box .title:hover {
+  color: #3B82F6;
+  cursor: pointer;
+}
+header .nav-bar .menu-list {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex: 1;
+}
+header .nav-bar .menu-list .menu-item {
+  color: #3B82F6;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.3rem;
+  transition: all 0.3s;
+}
+header .nav-bar .menu-list .menu-item:hover {
+  background-color: #EFF6FF;
+  color: #1E40AF;
+  transform: translateY(-2px);
+  border-bottom: 1px solid #1E40AF;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+header .nav-bar .signout {
+  color: #1E40AF;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.3rem;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+header .nav-bar .signout:hover {
+  background-color: #2563EB;
+  color: #F3F4F6;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}/*# sourceMappingURL=menu-bar.component.css.map */
