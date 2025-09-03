@@ -1,1 +1,75 @@
-/*# sourceMappingURL=contact-list.component.css.map */
+.mainBox {
+  padding: 24px;
+  background: #F3F4F6;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.mainBox .title-box {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.mainBox .title-box .title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1E40AF;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.mainBox .title-box .title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #3B82F6;
+  margin: 8px auto 0;
+  border-radius: 4px;
+}
+.mainBox .table-box {
+  overflow-x: auto;
+}
+.mainBox .table-box table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  table-layout: fixed;
+}
+.mainBox .table-box table thead {
+  background: #1E40AF;
+  color: #F3F4F6;
+}
+.mainBox .table-box table thead th {
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+}
+.mainBox .table-box table tbody tr {
+  transition: background 0.2s ease;
+}
+.mainBox .table-box table tbody tr:hover {
+  background: #EFF6FF;
+}
+.mainBox .table-box table tbody tr td {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #1E40AF;
+  border-bottom: 1px solid #F3F4F6;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.mainBox .table-box table tbody tr td.name {
+  width: 25%;
+}
+.mainBox .table-box table tbody tr td.phoneNumber {
+  width: 25%;
+}
+.mainBox .table-box table tbody tr td.tags {
+  width: 25%;
+}
+.mainBox .table-box table tbody tr td.buttons {
+  width: 25%;
+}/*# sourceMappingURL=contact-list.component.css.map */

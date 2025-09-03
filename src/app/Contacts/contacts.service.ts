@@ -7,8 +7,6 @@ import { CONTACTS } from './mock-contacts';
 })
 export class ContactsService {
 
-  
-
   contacts!:ContactInterface[];
 
   constructor() { 
@@ -16,8 +14,13 @@ export class ContactsService {
   }
   
   getContacts(){
-    console.log("In service");
-    console.log(this.contacts);
     return this.contacts;
+  }
+
+  getContactById(id: string) {
+    const findContact = CONTACTS.find(contact => {
+      return contact._id === id;
+    })
+    return findContact;
   }
 }

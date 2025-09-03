@@ -1,0 +1,77 @@
+:host {
+  display: table-row;
+  background: #F3F4F6;
+  transition: background 0.2s ease, transform 0.5s ease-out;
+}
+:host:hover {
+  background: #EFF6FF;
+  transform: scale(1.01);
+}
+:host .row-item {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #1E40AF;
+  vertical-align: middle;
+  border-bottom: 1px solid #F3F4F6;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+:host .row-item.name {
+  font-weight: 600;
+}
+:host .row-item.phoneNumber {
+  font-family: monospace;
+}
+:host .row-item.tags .badge {
+  display: inline-block;
+  background: #3B82F6;
+  color: #F3F4F6;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  margin-right: 6px;
+  transition: background 0.2s ease;
+}
+:host .row-item.tags .badge:hover {
+  background: #1E40AF;
+}
+:host .row-item.buttons {
+  display: flex;
+  gap: 8px;
+}
+:host .row-item.buttons button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+:host .row-item.buttons button.editBtn {
+  background: #3B82F6;
+  color: #F3F4F6;
+}
+:host .row-item.buttons button.editBtn:hover {
+  background: #1E40AF;
+}
+:host .row-item.buttons button.deleteBtn {
+  background: #1E40AF;
+  color: #F3F4F6;
+}
+:host .row-item.buttons button.deleteBtn:hover {
+  background: #3B82F6;
+}
+:host .row-item.buttons button.ViewBtn {
+  background: transparent;
+  color: #1E40AF;
+  border: 1px solid #1E40AF;
+}
+:host .row-item.buttons button.ViewBtn:hover {
+  background: #EFF6FF;
+}
+:host .row-item.buttons button:active {
+  transform: scale(0.95);
+}/*# sourceMappingURL=contact.component.css.map */

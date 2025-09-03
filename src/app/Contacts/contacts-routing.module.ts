@@ -6,11 +6,13 @@ import { ContactDetailsComponent } from './contact-details/contact-details.compo
 const routes: Routes = [
   {
     path: '',
-    component: ContactListComponent
+    component: ContactListComponent,
+    title: 'Contacts'
   },
   {
     path: ':id',
-    component: ContactDetailsComponent
+    component: ContactDetailsComponent,
+    title: 'COntact details'
   }
 ];
 

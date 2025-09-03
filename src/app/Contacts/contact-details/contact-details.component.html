@@ -1,1 +1,18 @@
-<p>contact-details works!</p>
+<app-menu-bar></app-menu-bar>
+<div *ngIf="contact" class="mainBox">
+    <div class="title-box">
+        <h1 class="title">{{contact.name | uppercase}}</h1>
+    </div>
+    <div class="detail-box">
+        <p class="detail _id">Contact Id: {{contact._id}}</p>
+        <p class="detail phoneNumber">Contact Number: {{contact.phoneNumber}}</p>
+        <p class="detail tags">Tags: {{contact.tags}}</p>
+        <p class="detail workspaceId">Belongs to Workspace Id: {{contact.workspaceId}}</p>
+        <p class="detail Created By">Created By: {{contact.createdBy}}</p>
+    </div>
+    <div class="action-box">
+        <button type="button" class="edit">Edit</button>
+        <button type="button" class="delete">Delete</button>
+        <button type="button" class="back">Back</button>
+    </div>
+</div>

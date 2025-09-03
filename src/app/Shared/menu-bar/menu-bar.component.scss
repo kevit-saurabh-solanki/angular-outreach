@@ -9,7 +9,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1); // subtle shadow
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); // subtle shadow
 
     .title-box {
       .title {
@@ -20,35 +20,77 @@ header {
 
         &:hover {
           color: #3B82F6; // secondary purple on hover
-          cursor: pointer; 
-        }
-      }
-    }
-
-    .menu-list {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      flex: 1;
-
-      .menu-item {
-        color: #3B82F6; // accent blue
-        text-decoration: none;
-        font-weight: 500;
-        padding: 0.3rem 0.6rem;
-        border-radius: 0.3rem;
-        transition: all 0.3s;
-
-        &:hover {
-          background-color: #EFF6FF; // very light blue hover bg
-          color: #1E40AF; // deep purple text on hover
-          transform: translateY(-2px);
-          border-bottom: 1px solid #1E40AF;
-          box-shadow: 0 2px 6px rgba(0,0,0,0.1);
           cursor: pointer;
         }
       }
     }
+
+    // .menu-list {
+    //   display: flex;
+    //   gap: 2rem;
+    //   justify-content: center;
+    //   flex: 1;
+
+    //   .menu-item {
+    //     color: #3B82F6; // accent blue
+    //     text-decoration: none;
+    //     font-weight: 500;
+    //     padding: 0.3rem 0.6rem;
+    //     border-radius: 0.3rem;
+    //     transition: all 0.3s;
+
+    //     &:hover {
+    //       background-color: #EFF6FF; // very light blue hover bg
+    //       color: #1E40AF; // deep purple text on hover
+    //       transform: translateY(-2px);
+    //       border-bottom: 1px solid #1E40AF;
+    //       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    //       cursor: pointer;
+    //     }
+    //   }
+    // }
+
+    .menu-list {
+      display: flex;
+      gap: 60px;
+
+      .menu-item {
+        position: relative;
+        font-size: 16px;
+        font-weight: 500;
+        color: #1E40AF;
+        text-decoration: none;
+        padding: 8px 0;
+        cursor: pointer;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: #3B82F6;
+        }
+
+        // underline
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 0;
+          height: 2px;
+          background: #3B82F6;
+          transition: width 0.3s ease;
+        }
+
+        &:hover::after {
+          width: 100%;
+        }
+
+        // active menu item
+        &.active::after {
+          width: 100%;
+        }
+      }
+    }
+
 
     .signout {
       color: #1E40AF; // deep purple
@@ -63,7 +105,7 @@ header {
         background-color: #2563EB; // secondary purple
         color: #F3F4F6; // light text
         transform: translateY(-2px);
-        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
       }
     }
   }

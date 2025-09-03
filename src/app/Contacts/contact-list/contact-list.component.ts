@@ -18,10 +18,9 @@ export class ContactListComponent {
 
   ngOnInit(){
     this.contacts = this.getContact();
-    console.log("In comp");
   }
 
-  getContact() : ContactInterface[]{
+  getContact(){
     return this.contactService.getContacts();
   }
 

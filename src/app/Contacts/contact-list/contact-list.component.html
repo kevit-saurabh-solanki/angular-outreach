@@ -1,2 +1,21 @@
 <app-menu-bar></app-menu-bar>
-<app-contact *ngFor="let cont of contacts" [contact]="cont"></app-contact>
+<div class="mainBox">
+    <div class="title-box">
+        <h1 class="title">Contacts</h1>
+    </div>
+    <div class="table-box">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Tags</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr app-contact *ngFor="let contact of contacts" [contact]="contact"></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
