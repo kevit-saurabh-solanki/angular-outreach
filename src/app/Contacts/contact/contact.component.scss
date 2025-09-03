@@ -2,11 +2,10 @@
   // this is the <tr>
   display: table-row;
   background: #F3F4F6;
-  transition: background 0.2s ease, transform 0.5s ease-out;
+  transition: background 0.2s ease;
 
   &:hover {
     background: #EFF6FF;
-    transform: scale(1.01);
   }
 
   .row-item {
@@ -56,7 +55,7 @@
         cursor: pointer;
         font-size: 13px;
         font-weight: 500;
-        transition: background 0.2s ease, transform 0.1s ease;
+        transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease;
 
         &.editBtn {
           background: #3B82F6;
@@ -83,11 +82,9 @@
 
           &:hover {
             background: #EFF6FF;
+            transform: scale(1.02);
+            box-shadow: 0 6px 15px rgba(109, 40, 217, 0.3);
           }
-        }
-
-        &:active {
-          transform: scale(0.95);
         }
       }
     }

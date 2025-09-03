@@ -10,7 +10,6 @@ import { ContactsService } from '../contacts.service';
   styleUrl: './contact-list.component.scss'
 })
 export class ContactListComponent {
-  
 
   constructor(private contactService:ContactsService){}
 

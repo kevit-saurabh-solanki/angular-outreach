@@ -23,4 +23,9 @@ export class ContactsService {
     })
     return findContact;
   }
+
+  addContact(body: ContactInterface) {}
+
+  editContact(body: ContactInterface) {}
+  
 }

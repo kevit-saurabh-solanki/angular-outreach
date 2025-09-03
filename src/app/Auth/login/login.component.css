@@ -33,11 +33,22 @@
   color: #6D28D9;
 }
 .mainBox .formBox .card {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   border-radius: 0.5rem;
   margin-top: 1rem;
   padding: 0.5rem;
+  height: 4.8rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.mainBox .formBox .card .validation-message {
+  min-height: 1.2rem;
+  color: #dc2626;
+  font-size: 0.85rem;
+  line-height: 1.2rem;
+  display: block;
+}
+.mainBox .formBox .password-card {
+  margin-bottom: 0;
 }
 .mainBox .formBox input[pInputText] {
   width: 100%;
@@ -61,6 +72,21 @@
   color: #4C1D95;
   font-weight: 500;
 }
+.mainBox .formBox .action-box {
+  min-height: 1.2rem;
+  text-align: center;
+  margin-top: 0.4rem;
+}
+.mainBox .formBox .action-box .invalid-credits {
+  display: block;
+  min-height: 1.2rem;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  color: #E74C3C;
+  font-size: 0.9rem;
+  text-align: center;
+  animation: shake 0.4s ease;
+}
 .mainBox .formBox #submit {
   width: 100%;
   padding: 0.9rem;
@@ -71,7 +97,7 @@
   font-weight: 600;
   color: #fff;
   cursor: pointer;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .mainBox .formBox #submit:hover {
@@ -80,23 +106,6 @@
 }
 .mainBox .formBox #submit:active {
   transform: scale(0.98);
-}
-.mainBox .formBox small {
-  display: block;
-  margin-top: -2rem;
-  margin-bottom: 1.5rem;
-  margin-left: 1rem;
-  font-size: 0.85rem;
-  color: #E74C3C;
-}
-.mainBox .formBox .invalid-credits {
-  display: block;
-  margin-top: 1.8rem;
-  margin-bottom: 0.5rem;
-  color: #E74C3C;
-  font-size: 0.9rem;
-  text-align: center;
-  animation: shake 0.4s ease;
 }
 
 /* Animations */

@@ -2,7 +2,7 @@
   padding: 24px;
   background: #F3F4F6;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 
   .title-box {
     text-align: center;
@@ -27,6 +27,73 @@
     }
   }
 
+  .search-add-box {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.2rem 0;
+    padding: 0.8rem 1rem;
+    background: #F3F4F6;
+    border-radius: 0.6rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+    input[type="text"] {
+      flex: 1;
+      padding: 0.6rem 0.9rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.4rem;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border 0.2s ease, box-shadow 0.2s ease;
+
+      &:focus {
+        border-color: #3B82F6;
+        box-shadow: 0 0 6px rgba(59, 130, 246, 0.3);
+      }
+    }
+
+    button {
+      padding: 0.6rem 1.1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+
+      &.search {
+        background: #1E40AF;
+        color: #fff;
+
+        &:hover {
+          background: #3B82F6;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        &:active {
+          transform: scale(0.97);
+        }
+      }
+
+      &.add {
+        background: #3B82F6;
+        color: #fff;
+
+        &:hover {
+          background: #1E40AF;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 12px rgba(30, 64, 175, 0.3);
+        }
+
+        &:active {
+          transform: scale(0.97);
+        }
+      }
+    }
+  }
+
   .table-box {
     overflow-x: auto;
 
@@ -36,8 +103,8 @@
       background: white;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      table-layout: fixed; // 👈 force equal width distribution
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      table-layout: fixed; 
 
       thead {
         background: #1E40AF;
@@ -71,16 +138,19 @@
 
           // column specific sizing
           td.name {
-            width: 25%;  // Name column
+            width: 25%; // Name column
           }
+
           td.phoneNumber {
-            width: 25%;  // Contact column
+            width: 25%; // Contact column
           }
+
           td.tags {
-            width: 25%;  // Tags column
+            width: 25%; // Tags column
           }
+
           td.buttons {
-            width: 25%;  // Actions column
+            width: 25%; // Actions column
           }
         }
       }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ContactInterface } from '../contact.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ContactsService } from '../contacts.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { ContactsService } from '../contacts.service';
 export class ContactDetailsComponent {
   contact?: ContactInterface;
 
-  constructor(private routeParam: ActivatedRoute, private contactService: ContactsService) { }
+  constructor(private routeParam: ActivatedRoute, private contactService: ContactsService, private router: Router) { }
 
   ngOnInit() {
     const id = this.getRouteParamId();
@@ -29,6 +29,12 @@ export class ContactDetailsComponent {
 
   getContactById(id: string) {
     return this.contactService.getContactById(id);
+  }
+
+  back() {
+    setTimeout(() => {
+      this.router.navigate(['/contacts']);
+    }, 2000)
   }
 
 }

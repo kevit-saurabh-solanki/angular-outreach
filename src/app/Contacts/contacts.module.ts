@@ -6,18 +6,23 @@ import { ContactDetailsComponent } from './contact-details/contact-details.compo
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { SharedModule } from '../Shared/shared.module';
 import { ContactComponent } from './contact/contact.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 
 @NgModule({
   declarations: [
     ContactDetailsComponent,
     ContactListComponent,
-    ContactComponent
+    ContactComponent,
+    ContactFormComponent,
   ],
   imports: [
     CommonModule,
     ContactsRoutingModule,
-    SharedModule
-  ]
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
+]
 })
 export class ContactsModule { }

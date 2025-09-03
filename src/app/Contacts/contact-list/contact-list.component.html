@@ -3,7 +3,12 @@
     <div class="title-box">
         <h1 class="title">Contacts</h1>
     </div>
-    <div class="table-box">
+    <div class="search-add-box">
+        <input type="text" placeholder="Search Contact">
+        <button type="button" class="search">Search</button>
+        <button type="button" class="add">Add Contact</button>
+    </div>
+    <div class="table-box" *ngIf="contacts">
         <table>
             <thead>
                 <tr>
