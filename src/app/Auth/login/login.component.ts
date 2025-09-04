@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FloatLabelModule } from 'primeng/floatlabel';
-import { InputTextModule } from 'primeng/inputtext';
+import { AuthService } from '../auth.service';
+
 
 @Component({
   selector: 'app-login',
@@ -11,17 +11,30 @@ import { InputTextModule } from 'primeng/inputtext';
 })
 export class LoginComponent {
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
-
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) { }
+  loginForm!: FormGroup;
   invalidCredits?: boolean;
 
-  loginForm = this.formBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]]
-  })
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    })
+  }
 
   login() {
-    this.invalidCredits = true;
-    this.router.navigate(['/contacts']);
+    this.authService.login(this.loginForm.value).subscribe({
+      next: (response) => {
+        console.log(response);
+        localStorage.setItem('token', response.access_token);
+        this.invalidCredits = false;
+        this.router.navigate(['/contacts']);
+      },
+      error: (err) => {
+        console.log(err);
+        this.invalidCredits = true;
+      }
+    });
+
   }
 }

@@ -7,15 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './menu-bar.component.scss'
 })
 export class MenuBarComponent {
-  // items: MenuItem[] | undefined;
+  activeClass?: boolean;
 
-  // ngOnInit() {
-  //   this.items = [
-  //     { label: 'Dashboard', icon: 'pi pi-home' },
-  //     { label: 'Transactions', icon: 'pi pi-chart-line' },
-  //     { label: 'Products', icon: 'pi pi-list' },
-  //     { label: 'Messages', icon: 'pi pi-inbox' }
-  //   ]
-  // }
-  sidebarVisible: boolean = false;
+  
 }

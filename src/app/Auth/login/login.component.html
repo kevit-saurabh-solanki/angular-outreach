@@ -29,7 +29,7 @@
                 <small *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
                     class="validation-message">
                     <span *ngIf="loginForm.get('password')?.errors?.['required']">Passsword is required</span>
-                    <span *ngIf="loginForm.get('password')?.errors?.['minlength']">Passswordd</span>
+                    <span *ngIf="loginForm.get('password')?.errors?.['minlength']">Minimum length 6</span>
                 </small>
             </div>
 
