@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ContactInterface } from '../contact.interface';
 import { CONTACTS } from '../mock-contacts';
-import { ContactsService } from '../contacts.service';
 
 
 @Component({
@@ -11,16 +10,6 @@ import { ContactsService } from '../contacts.service';
 })
 export class ContactListComponent {
 
-  constructor(private contactService:ContactsService){}
-
-  contacts!:ContactInterface[]
-
-  ngOnInit(){
-    this.contacts = this.getContact();
-  }
-
-  getContact(){
-    return this.contactService.getContacts();
-  }
-
+ 
+  contacts: ContactInterface[] = CONTACTS;
 }

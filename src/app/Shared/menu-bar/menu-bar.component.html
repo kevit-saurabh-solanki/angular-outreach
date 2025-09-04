@@ -4,12 +4,21 @@
             <strong class="title">Outreach Hub</strong>
         </div>
         <div class="menu-list">
-            <a class="home menu-item">Home</a>
-            <a class="contacts menu-item" [routerLink]="['/contacts']">Contacts</a>
-            <a class="campaign menu-item">Campaigns</a>
-            <a class="message menu-item">Message</a>
+            <a class="menu-item" [class.active]="activeTab === 'home'" (click)="setActive('home')">
+                Home
+            </a>
+            <a class="menu-item" [class.active]="activeTab === 'contacts'" [routerLink]="['/contacts']"
+                (click)="setActive('contacts')">
+                Contacts
+            </a>
+            <a class="menu-item" [class.active]="activeTab === 'campaign'" (click)="setActive('campaign')">
+                Campaigns
+            </a>
+            <a class="menu-item" [class.active]="activeTab === 'message'" (click)="setActive('message')">
+                Message
+            </a>
         </div>
-        <a class="signout">Sign-out</a>
+        <a class="signout" (click)="logout()">Sign-out</a>
     </div>
 </header>
 <router-outlet></router-outlet>
