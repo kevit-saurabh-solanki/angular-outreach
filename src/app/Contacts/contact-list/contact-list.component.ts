@@ -11,16 +11,6 @@ import { ContactsService } from '../contacts.service';
 })
 export class ContactListComponent {
 
-  constructor(private contactService:ContactsService){}
-
-  contacts!:ContactInterface[]
-
-  ngOnInit(){
-    this.contacts = this.getContact();
-  }
-
-  getContact(){
-    return this.contactService.getContacts();
-  }
+ 
 
 }

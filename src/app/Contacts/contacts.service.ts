@@ -1,31 +1,14 @@
 import { Injectable } from '@angular/core';
-import { ContactInterface } from './contact.interface';
-import { CONTACTS } from './mock-contacts';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactsService {
 
-  contacts!:ContactInterface[];
+  constructor(private http: HttpClient) {}
 
-  constructor() { 
-    this.contacts = CONTACTS; 
+  getContactByUserId() {
+    
   }
-  
-  getContacts(){
-    return this.contacts;
-  }
-
-  getContactById(id: string) {
-    const findContact = CONTACTS.find(contact => {
-      return contact._id === id;
-    })
-    return findContact;
-  }
-
-  addContact(body: ContactInterface) {}
-
-  editContact(body: ContactInterface) {}
-  
 }
