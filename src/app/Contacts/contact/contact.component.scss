@@ -1,0 +1,92 @@
+:host {
+  // this is the <tr>
+  display: table-row;
+  background: #F3F4F6;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #EFF6FF;
+  }
+
+  .row-item {
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #1E40AF;
+    vertical-align: middle;
+    border-bottom: 1px solid #F3F4F6;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    &.name {
+      font-weight: 600;
+    }
+
+    &.phoneNumber {
+      font-family: monospace;
+    }
+
+    &.tags {
+      .badge {
+        display: inline-block;
+        background: #3B82F6;
+        color: #F3F4F6;
+        font-size: 12px;
+        font-weight: 500;
+        padding: 4px 10px;
+        border-radius: 9999px;
+        margin-right: 6px;
+        transition: background 0.2s ease;
+
+        &:hover {
+          background: #1E40AF;
+        }
+      }
+    }
+
+    &.buttons {
+      display: flex;
+      gap: 8px;
+
+      button {
+        padding: 6px 12px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 500;
+        transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease;
+
+        &.editBtn {
+          background: #3B82F6;
+          color: #F3F4F6;
+
+          &:hover {
+            background: #1E40AF;
+          }
+        }
+
+        &.deleteBtn {
+          background: #1E40AF;
+          color: #F3F4F6;
+
+          &:hover {
+            background: #3B82F6;
+          }
+        }
+
+        &.ViewBtn {
+          background: transparent;
+          color: #1E40AF;
+          border: 1px solid #1E40AF;
+
+          &:hover {
+            background: #EFF6FF;
+            transform: scale(1.02);
+            box-shadow: 0 6px 15px rgba(109, 40, 217, 0.3);
+          }
+        }
+      }
+    }
+  }
+}

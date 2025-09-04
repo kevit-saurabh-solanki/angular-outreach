@@ -22,25 +22,36 @@ header .nav-bar .title-box .title:hover {
 }
 header .nav-bar .menu-list {
   display: flex;
-  gap: 2rem;
-  justify-content: center;
-  flex: 1;
+  gap: 60px;
 }
 header .nav-bar .menu-list .menu-item {
-  color: #3B82F6;
-  text-decoration: none;
+  position: relative;
+  font-size: 16px;
   font-weight: 500;
-  padding: 0.3rem 0.6rem;
-  border-radius: 0.3rem;
-  transition: all 0.3s;
+  color: #1E40AF;
+  text-decoration: none;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
 header .nav-bar .menu-list .menu-item:hover {
-  background-color: #EFF6FF;
-  color: #1E40AF;
-  transform: translateY(-2px);
-  border-bottom: 1px solid #1E40AF;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
+  color: #3B82F6;
+}
+header .nav-bar .menu-list .menu-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #3B82F6;
+  transition: width 0.3s ease;
+}
+header .nav-bar .menu-list .menu-item:hover::after {
+  width: 100%;
+}
+header .nav-bar .menu-list .menu-item.active::after {
+  width: 100%;
 }
 header .nav-bar .signout {
   color: #1E40AF;

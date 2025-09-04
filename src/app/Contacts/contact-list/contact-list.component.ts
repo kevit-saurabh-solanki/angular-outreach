@@ -10,19 +10,7 @@ import { ContactsService } from '../contacts.service';
   styleUrl: './contact-list.component.scss'
 })
 export class ContactListComponent {
-  
 
-  constructor(private contactService:ContactsService){}
-
-  contacts!:ContactInterface[]
-
-  ngOnInit(){
-    this.contacts = this.getContact();
-    console.log("In comp");
-  }
-
-  getContact() : ContactInterface[]{
-    return this.contactService.getContacts();
-  }
+ 
 
 }

@@ -1,23 +1,14 @@
 import { Injectable } from '@angular/core';
-import { ContactInterface } from './contact.interface';
-import { CONTACTS } from './mock-contacts';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactsService {
 
-  
+  constructor(private http: HttpClient) {}
 
-  contacts!:ContactInterface[];
-
-  constructor() { 
-    this.contacts = CONTACTS; 
-  }
-  
-  getContacts(){
-    console.log("In service");
-    console.log(this.contacts);
-    return this.contacts;
+  getContactByUserId() {
+    
   }
 }

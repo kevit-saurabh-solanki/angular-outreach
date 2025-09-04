@@ -1,0 +1,26 @@
+<form action="" [formGroup]="contactForm">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" formControlName="name" [attr.value]="contact?.name || ''">
+    <div class="valid-wrapper">
+        <small *ngIf="name?.invalid && name?.untouched">
+            <span *ngIf="name?.errors?.['required']">Name is Required</span>
+        </small>
+    </div>
+
+    <label for="phoneNumber">Contact Number</label>
+    <input type="number" name="phoneNumber" id="phoneNumber" formControlName="phoneNumber" [attr.value]="contact?.phoneNumber || ''">
+    <div class="valid-wrapper">
+        <small *ngIf="phoneNumber?.invalid && phoneNumber?.untouched">
+            <span *ngIf="phoneNumber?.errors?.['required']">Number is Required</span>
+            <span *ngIf="phoneNumber?.errors?.['minlength']">Enter complete number</span>
+        </small>
+    </div>
+
+    <label for="tags">Tags</label>
+    <input type="text" name="tags" id="tags" formControlName="tags" placeholder="Give tags seperated by comma" [attr.value]="contact?.tags?.join(', ') || ''">
+    <div class="valid-wrapper">
+        <small *ngIf="tags?.invalid && tags?.untouched">
+            <span *ngIf="tags?.errors?.['required']">Tag is Required</span>
+        </small>
+    </div>
+</form>

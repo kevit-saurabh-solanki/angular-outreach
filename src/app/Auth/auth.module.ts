@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -16,7 +17,8 @@ import { InputTextModule } from 'primeng/inputtext';
     ReactiveFormsModule,
     FloatLabelModule,
     InputTextModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ]
 })
 export class AuthModule { }

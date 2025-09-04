@@ -35,17 +35,25 @@
     }
 
     .card {
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
       border-radius: 0.5rem;
       margin-top: 1rem;
       padding: 0.5rem;
-      // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      // min-height: 50px;
+      height: 4.8rem;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-      // &:hover {
-      //   transform: translateY(-2px);
-      //   box-shadow: 0 6px 15px rgba(109, 40, 217, 0.3);
-      // }
+      .validation-message {
+        min-height: 1.2rem; // reserve space even when empty
+        color: #dc2626; // red error
+        font-size: 0.85rem;
+        line-height: 1.2rem;
+        display: block; // ensures it’s visible
+      }
+    }
+
+    .password-card {
+      margin-bottom: 0;
     }
 
     input[pInputText] {
@@ -74,6 +82,24 @@
       font-weight: 500;
     }
 
+    .action-box {
+      min-height: 1.2rem;
+      // height: 5rem;
+      text-align: center;
+      margin-top: 0.4rem;
+
+      .invalid-credits {
+        display: block;
+        min-height: 1.2rem;
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+        color: #E74C3C;
+        font-size: 0.9rem;
+        text-align: center;
+        animation: shake 0.4s ease;
+      }
+    }
+
     #submit {
       width: 100%;
       padding: 0.9rem;
@@ -84,7 +110,7 @@
       font-weight: 600;
       color: #fff;
       cursor: pointer;
-      margin-top: 1rem;
+      margin-top: 0.5rem;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
 
       &:hover {
@@ -95,25 +121,6 @@
       &:active {
         transform: scale(0.98);
       }
-    }
-
-    small {
-      display: block;
-      margin-top: -2.0rem;
-      margin-bottom: 1.5rem;
-      margin-left: 1rem;
-      font-size: 0.85rem;
-      color: #E74C3C;
-    }
-
-    .invalid-credits {
-      display: block;
-      margin-top: 1.8rem;
-      margin-bottom: 0.5rem;
-      color: #E74C3C;
-      font-size: 0.9rem;
-      text-align: center;
-      animation: shake 0.4s ease;
     }
   }
 }
@@ -164,5 +171,3 @@
     transform: translateX(0);
   }
 }
-
-

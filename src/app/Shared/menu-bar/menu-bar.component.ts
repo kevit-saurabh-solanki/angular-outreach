@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../Auth/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -7,15 +9,18 @@ import { Component } from '@angular/core';
   styleUrl: './menu-bar.component.scss'
 })
 export class MenuBarComponent {
-  // items: MenuItem[] | undefined;
 
-  // ngOnInit() {
-  //   this.items = [
-  //     { label: 'Dashboard', icon: 'pi pi-home' },
-  //     { label: 'Transactions', icon: 'pi pi-chart-line' },
-  //     { label: 'Products', icon: 'pi pi-list' },
-  //     { label: 'Messages', icon: 'pi pi-inbox' }
-  //   ]
-  // }
-  sidebarVisible: boolean = false;
+  activeTab: string = 'home'; // default active
+
+  constructor(private authService: AuthService, private router: Router) {}
+
+  setActive(tab: string) {
+    this.activeTab = tab;
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
+
 }

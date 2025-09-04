@@ -4,32 +4,38 @@
         <p class="login-heading">Sign in to your account</p>
         <form action="" [formGroup]="loginForm">
 
-            <!-- <label for="email">Email</label>
-            <input type="email" id="email" name="email" formControlName="email"> -->
             <div class="card flex justify-content-center">
                 <p-floatLabel>
-                    <input pInputText id="email" formControlName="email"/>
+                    <input pInputText id="email" formControlName="email" />
                     <label for="email">Email</label>
                 </p-floatLabel>
-            </div>
-            <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-                <small *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</small>
-                <small *ngIf="loginForm.get('email')?.errors?.['email']">Enter valid email</small>
+
+                <small class="validation-message">
+                    <span *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['required']">
+                        Email is required
+                    </span>
+                    <span *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['email']">
+                        Enter valid email
+                    </span>
+                </small>
             </div>
 
-            <!-- <label for="password">Passsword</label>
-            <input type="password" id="password" name="password" formControlName="password"> -->
-            <div class="card flex justify-content-center">
+
+            <div class="card flex justify-content-center password-card">
                 <p-floatLabel>
-                    <input pInputText id="password" formControlName="password"/>
+                    <input pInputText id="password" formControlName="password" />
                     <label for="password">Passsword</label>
                 </p-floatLabel>
-            </div>
-            <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-                <small *ngIf="loginForm.get('password')?.errors?.['required']">Passsword is required</small>
+                <small *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+                    class="validation-message">
+                    <span *ngIf="loginForm.get('password')?.errors?.['required']">Passsword is required</span>
+                    <span *ngIf="loginForm.get('password')?.errors?.['minlength']">Minimum length 6</span>
+                </small>
             </div>
 
-            <small class="invalid-credits" *ngIf="invalidCredits">Invalid Credentials</small>
+            <div class="action-box">
+                <small class="invalid-credits" *ngIf="invalidCredits">Invalid Credentials</small>
+            </div>
 
             <input type="submit" value="Login" id="submit" (click)="login()">
         </form>

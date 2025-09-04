@@ -1,1 +1,97 @@
-/*# sourceMappingURL=contact-details.component.css.map */
+.mainBox {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 24px;
+  background: #F3F4F6;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+.mainBox:hover {
+  transform: scale(1.01);
+}
+.mainBox .title-box {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.mainBox .title-box .title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1E40AF;
+  letter-spacing: 1px;
+}
+.mainBox .title-box .title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: #3B82F6;
+  margin: 8px auto 0;
+  border-radius: 4px;
+}
+.mainBox .detail-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.mainBox .detail-box .detail {
+  font-size: 16px;
+  color: #1E40AF;
+}
+.mainBox .detail-box .detail.tags span {
+  display: inline-block;
+  background: #3B82F6;
+  color: #F3F4F6;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  margin-right: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+.mainBox .detail-box .detail.tags span:hover {
+  background: #1E40AF;
+}
+.mainBox .action-box {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+.mainBox .action-box button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+.mainBox .action-box button.edit {
+  background: #3B82F6;
+  color: #F3F4F6;
+}
+.mainBox .action-box button.edit:hover {
+  background: #1E40AF;
+  transform: scale(1.05);
+}
+.mainBox .action-box button.delete {
+  background: #1E40AF;
+  color: #F3F4F6;
+}
+.mainBox .action-box button.delete:hover {
+  background: #3B82F6;
+  transform: scale(1.05);
+}
+.mainBox .action-box button.back {
+  background: transparent;
+  color: #1E40AF;
+  border: 1px solid #1E40AF;
+}
+.mainBox .action-box button.back:hover {
+  background: #EFF6FF;
+  transform: scale(1.05);
+}
+.mainBox .action-box button:active {
+  transform: scale(0.95);
+}/*# sourceMappingURL=contact-details.component.css.map */
