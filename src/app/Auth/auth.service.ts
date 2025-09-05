@@ -18,9 +18,12 @@ export class AuthService {
 
 
   login(body: loginInterface) {
-    return this.http.post<{ access_token: string }>(this.baseUrl, body).pipe(
+    return this.http.post<{ token: string, workspaceId?: string }>(this.baseUrl, body).pipe(
       tap((res) => {
-        localStorage.setItem('token', res.access_token); // save token here
+        localStorage.setItem('token', res.token); // save token here
+        if (res.workspaceId) {
+          localStorage.setItem('wokspaceId', res?.workspaceId)
+        } 
         this.authState.next(true);
       }),
       catchError((err) => {

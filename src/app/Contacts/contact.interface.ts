@@ -18,3 +18,10 @@ export interface ContactInterface {
     createdAt: string;
     updatedAt: string;
 }
+
+export interface SendContactInterface {
+    name: string;
+    phoneNumber: number;
+    tags: string[];
+    workspaceId: string;
+}

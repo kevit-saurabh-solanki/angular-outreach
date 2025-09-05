@@ -1,29 +1,46 @@
-<form action="" [formGroup]="contactForm">
-    <label for="name">Name</label>
-    <input type="text" name="name" id="name" formControlName="name" [attr.value]="contact?.name || ''">
-    <div class="valid-wrapper">
-        <small *ngIf="name?.invalid && name?.untouched">
-            <span *ngIf="name?.errors?.['required']">Name is Required</span>
-        </small>
+<form [formGroup]="contactForm">
+
+    <div class="card flex justify-content-center">
+        <p-floatLabel>
+            <input pInputText id="name" formControlName="name" />
+            <label for="name">Name</label>
+        </p-floatLabel>
+
+        <div class="validation-wrapper">
+            <small class="validation-message" *ngIf="name?.invalid && name?.touched">
+                <span *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.errors?.['required']">
+                    Name is required
+                </span>
+            </small>
+        </div>
     </div>
 
-    <label for="phoneNumber">Contact Number</label>
-    <input type="number" name="phoneNumber" id="phoneNumber" formControlName="phoneNumber"
-        [attr.value]="contact?.phoneNumber || ''">
-    <div class="valid-wrapper">
-        <small *ngIf="phoneNumber?.invalid && phoneNumber?.untouched">
-            <span *ngIf="phoneNumber?.errors?.['required']">Number is Required</span>
-            <span *ngIf="phoneNumber?.errors?.['minlength']">Enter complete number</span>
-        </small>
+    <div class="card flex justify-content-center">
+        <p-floatLabel>
+            <input pInputText id="phoneNumber" formControlName="phoneNumber" />
+            <label for="phoneNumber">Contact Number</label>
+        </p-floatLabel>
+
+        <div class="validation-wrapper">
+            <small class="validation-message" *ngIf="phoneNumber?.invalid && phoneNumber?.touched">
+                <span *ngIf="phoneNumber?.errors?.['required']">Phone number is required.</span>
+                <span *ngIf="phoneNumber?.errors?.['pattern']">Phone number must contain only digits.</span>
+                <span *ngIf="phoneNumber?.errors?.['minlength']">Phone number must be at least 10 digits.</span>
+            </small>
+        </div>
     </div>
 
-    <label for="tags">Tags</label>
-    <input type="text" name="tags" id="tags" formControlName="tags" placeholder="Give tags seperated by comma"
-        [attr.value]="contact?.tags?.join(', ') || ''">
-    <div class="valid-wrapper">
-        <small *ngIf="tags?.invalid && tags?.untouched">
-            <span *ngIf="tags?.errors?.['required']">Tag is Required</span>
-        </small>
+    <div class="card flex justify-content-center">
+        <p-floatLabel>
+            <input pInputText id="tags" formControlName="tags" />
+            <label for="tags">Tags</label>
+        </p-floatLabel>
+
+        <div class="validation-wrapper">
+            <small class="validation-message" *ngIf="tags?.invalid && tags?.touched">
+                <span *ngIf="phoneNumber?.errors?.['required']">Tags is required.</span>
+            </small>
+        </div>
     </div>
 
     <button type="submit" [disabled]="contactForm.invalid">

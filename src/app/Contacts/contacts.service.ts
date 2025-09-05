@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, retry, throwError } from 'rxjs';
-import { ContactInterface } from './contact.interface';
+import { ContactInterface, SendContactInterface } from './contact.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -40,8 +40,8 @@ export class ContactsService {
     );
   }
 
-  addContact({ name, phoneNumber, tags }: ContactInterface) {
-    this.http.post(`${this.baseUrl}`, { name, phoneNumber, tags }).pipe(
+  addContact({ name, phoneNumber, tags, workspaceId }: SendContactInterface) {
+    return this.http.post(`${this.baseUrl}`, { name, phoneNumber, tags, workspaceId }).pipe(
       catchError(err => {
         console.error('Error fetching contact:', err);
         return throwError(() => err);
