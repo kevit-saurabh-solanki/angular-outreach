@@ -16,18 +16,17 @@ export class ContactsService {
     return this.http.get(`${this.baseUrl}`).pipe(
       catchError((err) => {
         console.log(err);
-        return err;
+        return throwError(() => err);
       })
     );
   }
 
   getContactById(id: string) {
     return this.http.get<ContactInterface>(`http://localhost:3000/contacts/${id}`).pipe(
-      // 1️⃣ transform data (optional)
       map(contact => ({
         ...contact,
-        name: contact.name.toUpperCase(), // example transformation
-        // phoneNumber: `+91-${contact.phoneNumber}`
+        name: contact.name.toUpperCase(),
+        // phoneNumber: `+91-${contact.phoneNumber}` not working
       })),
 
       // 2️⃣ retry request if it fails
@@ -36,9 +35,18 @@ export class ContactsService {
       // 3️⃣ handle errors gracefully
       catchError(err => {
         console.error('Error fetching contact:', err);
-        return throwError(() => err); // forward error to component
+        return throwError(() => err);
       })
     );
+  }
+
+  addContact({ name, phoneNumber, tags }: ContactInterface) {
+    this.http.post(`${this.baseUrl}`, { name, phoneNumber, tags }).pipe(
+      catchError(err => {
+        console.error('Error fetching contact:', err);
+        return throwError(() => err);
+      })
+    )
   }
 
 }

@@ -19,6 +19,11 @@ const routes: Routes = [
     path: 'edit/:id',
     component: ContactFormComponent,
     title: 'Edit Contact'
+  },
+  {
+    path: 'add-contact',
+    component: ContactFormComponent,
+    title: 'Add Contact'
   }
 ];
 

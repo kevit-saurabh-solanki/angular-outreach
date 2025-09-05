@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ContactInterface } from '../contact.interface';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-contact-form',
@@ -12,7 +13,7 @@ export class ContactFormComponent {
   @Input() contact?: ContactInterface;
   @Output() formSumbit = new EventEmitter<ContactInterface>();
 
-  constructor(private formBuilder: FormBuilder, private routeParam: ActivatedRoute) {}
+  constructor(private formBuilder: FormBuilder, private routeParam: ActivatedRoute, private location: Location) {}
 
   contactForm = this.formBuilder.group({
     name: ['', [Validators.required]],
@@ -34,5 +35,9 @@ export class ContactFormComponent {
 
   getRouteId() {
     const id = this.routeParam.snapshot.paramMap.get('id');
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

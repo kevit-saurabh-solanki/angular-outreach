@@ -22,8 +22,11 @@ export class ContactDetailsComponent {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.contactService.getContactById(id).subscribe({
-        next: (contact) => {(this.contact = { ...contact, phoneNumber: Number(contact.phoneNumber) })
-      console.log(contact)},
+        next: (contact) => {
+          this.contact = {
+            ...contact,
+          };
+        },
         error: (err) => {
           console.error(err);
           // optional: redirect if contact not found
