@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class MenuBarComponent {
 
-  activeTab: string = 'home'; // default active
+  activeTab: string = 'contacts'; // default active
 
   constructor(private authService: AuthService, private router: Router) {}
 

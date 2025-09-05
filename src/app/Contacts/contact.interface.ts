@@ -3,6 +3,18 @@ export interface ContactInterface {
     name: string;
     phoneNumber: number;
     tags: string[];
-    workspaceId: string;
-    createdBy: string;
+
+    workspaceId: {
+        _id: string;
+        name: string;
+        description?: string;
+    };
+
+    createdBy: {
+        _id: string;
+        email: string;
+    };
+
+    createdAt: string;
+    updatedAt: string;
 }

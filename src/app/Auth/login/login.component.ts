@@ -10,31 +10,41 @@ import { AuthService } from '../auth.service';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) { }
   loginForm!: FormGroup;
   invalidCredits?: boolean;
 
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) { }
+
   ngOnInit() {
+    this.authService.authState$.subscribe(isLoggedIn => {
+      if (!isLoggedIn) {
+        this.router.navigate(['/login']);
+      }
+    }) //not working
+
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    })
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
   }
 
+
   login() {
+    if (this.loginForm.invalid) return;
+
     this.authService.login(this.loginForm.value).subscribe({
-      next: (response) => {
-        console.log(response);
-        localStorage.setItem('token', response.access_token);
+      next: () => {
         this.invalidCredits = false;
         this.router.navigate(['/contacts']);
       },
-      error: (err) => {
-        console.log(err);
+      error: () => {
         this.invalidCredits = true;
-      }
+      },
     });
-
   }
 }
+
