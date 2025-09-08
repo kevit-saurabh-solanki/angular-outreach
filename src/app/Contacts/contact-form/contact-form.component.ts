@@ -14,6 +14,7 @@ export class ContactFormComponent {
   @Input() contact?: ContactInterface;
   @Output() formSumbit = new EventEmitter<SendContactInterface>();
   contactForm!: FormGroup;
+  message?: boolean;
 
   constructor(private formBuilder: FormBuilder, private routeParam: ActivatedRoute, private location: Location, private contactService: ContactsService) { }
 
@@ -61,17 +62,51 @@ export class ContactFormComponent {
     if (this.contactForm.invalid) return;
 
     const formValue = this.contactForm.value;
-    const workspaceId = localStorage.getItem('workspaceId');
+    const wokspaceId = localStorage.getItem('workspaceId');
 
     const contactToAdd: SendContactInterface = {
+      name: formValue.name,
+      phoneNumber: Number(formValue.phoneNumber),
+      tags: formValue.tags.split(',').map((tag: string) => tag.trim()),
+      workspaceId: wokspaceId || ''
+    };
+
+    this.contactService.addContact(contactToAdd).subscribe({
+      next: (result) => {
+        this.message = true;
+        this.contactForm.reset();
+        console.log("Contact added");
+      },
+      error: (err) => {
+        this.message = false;
+        console.error(err);
+      }
+    });
+  }
+
+  onEdit() {
+    if (this.contactForm.invalid || !this.contact) return;
+
+    const formValue = this.contactForm.value;
+    const workspaceId = localStorage.getItem('workspaceId');
+
+    const contactToEdit: SendContactInterface = {
       name: formValue.name,
       phoneNumber: Number(formValue.phoneNumber),
       tags: formValue.tags.split(',').map((tag: string) => tag.trim()),
       workspaceId: workspaceId || ''
     };
 
-    this.contactService.addContact(contactToAdd).subscribe((result) => {
-      // Optionally, navigate or reset form here
+    this.contactService.editContact(contactToEdit, this.contact._id).subscribe({
+      next: (result) => {
+        this.message = true;
+        this.contactForm.reset();
+        console.log("Contact edited");
+      },
+      error: (err) => {
+        this.message = false;
+        console.error(err);
+      }
     });
   }
 }

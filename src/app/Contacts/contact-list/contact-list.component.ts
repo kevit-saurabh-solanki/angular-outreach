@@ -11,8 +11,8 @@ import { ContactsService } from '../contacts.service';
 export class ContactListComponent {
 
   contacts!: ContactInterface[];
-  
-  constructor(private contactService: ContactsService) {}
+
+  constructor(private contactService: ContactsService) { }
 
   ngOnInit() {
     this.getContacts();
@@ -22,7 +22,6 @@ export class ContactListComponent {
     this.contactService.getContactByUserId().subscribe({
       next: (response) => {
         console.log('Contacts fetched');
-        console.log(response);
         this.contacts = response as ContactInterface[];
         return response;
       },

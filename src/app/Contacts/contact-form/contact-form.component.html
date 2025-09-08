@@ -1,4 +1,4 @@
-<form [formGroup]="contactForm">
+<form [formGroup]="contactForm" (ngSubmit)="contact ? onEdit() : onSubmit()">
 
     <div class="card flex justify-content-center">
         <p-floatLabel>
@@ -47,4 +47,6 @@
         {{ contact ? 'Edit' : 'Add' }}
     </button>
     <button type="button" (click)="goBack()">Back</button>
+    <p class="success-message" *ngIf="!contact && message">Contact Added SuccessFully</p>
+    <p class="success-message" *ngIf="contact && message">Contact Edited SuccessFully</p>
 </form>

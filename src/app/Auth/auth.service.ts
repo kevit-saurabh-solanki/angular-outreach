@@ -22,7 +22,7 @@ export class AuthService {
       tap((res) => {
         localStorage.setItem('token', res.token); // save token here
         if (res.workspaceId) {
-          localStorage.setItem('wokspaceId', res?.workspaceId)
+          localStorage.setItem('workspaceId', res?.workspaceId)
         } 
         this.authState.next(true);
       }),

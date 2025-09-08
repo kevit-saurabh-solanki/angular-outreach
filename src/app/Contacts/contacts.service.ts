@@ -25,7 +25,7 @@ export class ContactsService {
     return this.http.get<ContactInterface>(`http://localhost:3000/contacts/${id}`).pipe(
       map(contact => ({
         ...contact,
-        name: contact.name.toUpperCase(),
+        // name: contact.name.toUpperCase(),
         // phoneNumber: `+91-${contact.phoneNumber}` not working
       })),
 
@@ -49,4 +49,21 @@ export class ContactsService {
     )
   }
 
+  editContact({ name, phoneNumber, tags, workspaceId }: SendContactInterface, contactId: string) {
+    return this.http.put(`http://localhost:3000/contacts/${contactId}`, { name, phoneNumber, tags, workspaceId }).pipe(
+      catchError(err => {
+        console.error('Error editing contact:', err);
+        return throwError(() => err);
+      })
+    );
+  }
+
+  deleteContact(contactId: string) {
+    return this.http.delete(`http://localhost:3000/contacts/${contactId}`).pipe(
+      catchError(err => {
+        console.error('Error deleting contact:', err);
+        return throwError(() => err);
+      })
+    );
+  }
 }

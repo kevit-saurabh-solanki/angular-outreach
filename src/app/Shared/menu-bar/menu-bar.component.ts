@@ -19,8 +19,12 @@ export class MenuBarComponent {
   }
 
   logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
-  }
+  const confirmLogout = window.confirm('Are you sure you want to log out?');
+  if (!confirmLogout) return;
+
+  localStorage.removeItem('token');
+  localStorage.clear();
+  this.router.navigate(['/login']);
+}
 
 }

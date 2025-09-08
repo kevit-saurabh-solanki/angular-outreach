@@ -3,7 +3,7 @@
 <td class="row-item tags"><span *ngFor="let tag of contact.tags" class="badge">{{tag}}</span></td>
 <td class="row-item buttons">
     <button class="editBtn" [routerLink]="['edit', contact._id]">Edit</button>
-    <button class="deleteBtn">Delete</button>
+    <button class="deleteBtn" (click)="deleteContact(contact._id)">Delete</button>
     <button class="ViewBtn" [routerLink]="['/contacts', contact._id]">View</button>
 </td>
 

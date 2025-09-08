@@ -39,6 +39,25 @@ export class ContactDetailsComponent {
   goBack() {
     this.router.navigate(['/contacts']);
   }
+
+  redirectToEdit() {
+    this.router.navigate(['contacts/edit', this.contact?._id]);
+  }
+
+  deleteContact(contactId: string) {
+    const confirmDelete = window.confirm('Are you sure you want to delete this contact?');
+    if (!confirmDelete) return;
+
+    this.contactService.deleteContact(contactId).subscribe({
+      next: () => {
+        console.log('Contact deleted');
+        this.router.navigate(['/contacts']);
+      },
+      error: (err) => {
+        console.error('Error deleting contact:', err);
+      }
+    });
+  }
 }
 
 

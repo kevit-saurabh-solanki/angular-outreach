@@ -11,8 +11,8 @@
         <p class="detail Created By">Created By: {{contact.createdBy.email}}</p>
     </div>
     <div class="action-box">
-        <button type="button" class="edit" [routerLink]="['edit', contact._id]">Edit</button>
-        <button type="button" class="delete">Delete</button>
+        <button type="button" class="edit" (click)="redirectToEdit()">Edit</button>
+        <button type="button" class="delete" (click)="deleteContact(contact._id)">Delete</button>
         <button type="button" class="back" (click)="goBack()" >Back</button>
     </div>
 </div>
