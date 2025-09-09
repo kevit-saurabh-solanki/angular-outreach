@@ -1,1 +1,58 @@
-<p>message-form works!</p>
+<form [formGroup]="messageForm">
+
+    <div class="card flex justify-content-center">
+        <p-floatLabel>
+            <input pInputText id="title" formControlName="title" />
+            <label for="title">Title</label>
+        </p-floatLabel>
+
+        <div class="validation-wrapper">
+            <small class="validation-message" *ngIf="title?.invalid && title?.touched">
+                <span *ngIf="title?.errors?.['required']">
+                    Title is required
+                </span>
+            </small>
+        </div>
+    </div>
+
+    <div class="card flex justify-content-center">
+        <p-floatLabel>
+            <p-dropdown class="dropdown" [options]="messageTypeOption" optionLabel="messageType" inputId="float-label"
+                formControlName="messageType"/>
+            <label for="float-label">Select a Message Type</label>
+        </p-floatLabel>
+
+        <div class="validation-wrapper">
+            <small class="validation-message" *ngIf="messageType?.invalid && messageType?.touched">
+                <span *ngIf="messageType?.errors?.['required']">Message Type is required.</span>
+            </small>
+        </div>
+    </div>
+
+    <div class="card flex justify-content-center">
+        <p-floatLabel>
+            <textarea id="float-input" rows="5" cols="30" pInputTextarea formControlName="content"></textarea>
+            <label for="float-input">Content</label>
+        </p-floatLabel>
+
+        <div class="validation-wrapper">
+            <small class="validation-message" *ngIf="content?.invalid && content?.touched">
+                <span *ngIf="content?.errors?.['required']">Content is required.</span>
+            </small>
+        </div>
+    </div>
+
+    <!-- <div class="card flex justify-content-center">
+        <p-floatLabel>
+            <input pInputText id="url" formControlName="url" />
+            <label for="url">Upload url</label>
+        </p-floatLabel>
+    </div> -->
+
+    <button type="submit" [disabled]="messageForm.invalid">
+        {{ message ? 'Edit' : 'Add' }}
+    </button>
+    <button type="button" (click)="goBack()">Back</button>
+    <p class="success-message" *ngIf="!message && message">Message Added SuccessFully</p>
+    <p class="success-message" *ngIf="message && message">Message Edited SuccessFully</p>
+</form>

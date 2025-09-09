@@ -5,7 +5,7 @@
   </div>
   <div class="actions">
     <button [routerLink]="['/messages', message?._id]">View</button>
-    <button>Edit</button>
+    <button [routerLink]="['edit', message?._id]">Edit</button>
     <button>Delete</button>
   </div>
 </div>

@@ -11,8 +11,8 @@ import { ContactsService } from '../contacts.service';
   styleUrl: './contact-form.component.scss'
 })
 export class ContactFormComponent {
-  @Input() contact?: ContactInterface;
-  @Output() formSumbit = new EventEmitter<SendContactInterface>();
+  contact?: ContactInterface;
+  // @Output() formSumbit = new EventEmitter<SendContactInterface>();
   contactForm!: FormGroup;
   message?: boolean;
 
