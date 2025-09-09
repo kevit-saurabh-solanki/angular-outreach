@@ -27,4 +27,5 @@ export class MenuBarComponent {
   this.router.navigate(['/login']);
 }
 
+
 }

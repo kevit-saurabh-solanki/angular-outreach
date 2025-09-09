@@ -10,6 +10,7 @@ import { ContactsService } from '../contacts.service';
 })
 export class ContactListComponent {
 
+
   contacts!: ContactInterface[];
 
   constructor(private contactService: ContactsService) { }
@@ -30,4 +31,5 @@ export class ContactListComponent {
       }
     });
   }
+
 }

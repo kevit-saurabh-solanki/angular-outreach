@@ -14,6 +14,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 
 
+
 @NgModule({
   declarations: [
     ContactDetailsComponent,
@@ -30,7 +31,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
     HttpClientModule,
     FloatLabelModule,
     InputTextModule,
-    InputNumberModule
-  ]
+    InputNumberModule,
+    HttpClientModule,
+   ]
 })
 export class ContactsModule { }
