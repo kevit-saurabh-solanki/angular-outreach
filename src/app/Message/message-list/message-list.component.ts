@@ -20,7 +20,6 @@ export class MessageListComponent {
     this.messageService.getAllMessages().subscribe({
       next: (response: any) => {
         console.log('messages fetched');
-        console.log(response);
         this.messages = response as MessageInterface[];
       },
       error: (err: any) => {

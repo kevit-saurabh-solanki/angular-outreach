@@ -18,12 +18,12 @@ const routes: Routes = [
     {
         path: 'edit/:id',
         component: MessageFormComponent,
-        title: 'Edit Contact'
+        title: 'Edit Message'
     },
     {
         path: ':id',
         component: MessageTemplateComponent,
-        title: 'Contact details'
+        title: 'Message details'
     }
 ];
 

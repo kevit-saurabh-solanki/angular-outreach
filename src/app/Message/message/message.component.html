@@ -4,7 +4,7 @@
     <div class="type">{{ message?.messageType }}</div>
   </div>
   <div class="actions">
-    <button>View</button>
+    <button [routerLink]="['/messages', message?._id]">View</button>
     <button>Edit</button>
     <button>Delete</button>
   </div>
