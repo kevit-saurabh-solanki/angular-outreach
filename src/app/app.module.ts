@@ -8,7 +8,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './Auth/auth.interceptor';
 import { RouterModule } from '@angular/router';
 
-
 @NgModule({
   declarations: [
     AppComponent,

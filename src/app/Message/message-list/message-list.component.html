@@ -1,0 +1,14 @@
+<app-menu-bar></app-menu-bar>
+<div class="mainBox">
+    <div class="title-box">
+        <h1 class="title">Messages</h1>
+    </div>
+    <div class="search-add-box">
+        <input type="text" placeholder="Search Message">
+        <button type="button" class="search">Search</button>
+        <button type=" button" class="add">Add Message</button>
+    </div>
+    <div class="message-box">
+        <app-message *ngFor="let message of messages" [message]="message"></app-message>
+    </div>
+</div>

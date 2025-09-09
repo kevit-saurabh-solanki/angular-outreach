@@ -16,6 +16,12 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'messages',
+    loadChildren: () => import('./Message/message.module').then(m => m.MessageModule),
+    title: 'Messages',
+    canActivate: [authGuard]
+  },
+  {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
