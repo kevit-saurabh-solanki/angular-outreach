@@ -11,14 +11,19 @@ const routes: Routes = [
     title: 'Contacts'
   },
   {
-    path: ':id',
-    component: ContactDetailsComponent,
-    title: 'Contact details'
+    path: 'add',
+    component: ContactFormComponent,
+    title: 'Add Contact'
   },
   {
     path: 'edit/:id',
     component: ContactFormComponent,
     title: 'Edit Contact'
+  },
+  {
+    path: ':id',
+    component: ContactDetailsComponent,
+    title: 'Contact details'
   }
 ];
 

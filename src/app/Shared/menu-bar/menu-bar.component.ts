@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class MenuBarComponent {
 
-  activeTab: string = 'home'; // default active
+
+  activeTab: string = 'contacts'; // default active
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -19,8 +20,13 @@ export class MenuBarComponent {
   }
 
   logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
-  }
+  const confirmLogout = window.confirm('Are you sure you want to log out?');
+  if (!confirmLogout) return;
+
+  localStorage.removeItem('token');
+  localStorage.clear();
+  this.router.navigate(['/login']);
+}
+
 
 }

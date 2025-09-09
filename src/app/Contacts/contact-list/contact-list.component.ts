@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ContactInterface } from '../contact.interface';
-import { CONTACTS } from '../mock-contacts';
 import { ContactsService } from '../contacts.service';
 
 
@@ -11,6 +10,26 @@ import { ContactsService } from '../contacts.service';
 })
 export class ContactListComponent {
 
- 
+
+  contacts!: ContactInterface[];
+
+  constructor(private contactService: ContactsService) { }
+
+  ngOnInit() {
+    this.getContacts();
+  }
+
+  getContacts() {
+    this.contactService.getContactByUserId().subscribe({
+      next: (response) => {
+        console.log('Contacts fetched');
+        this.contacts = response as ContactInterface[];
+        return response;
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    });
+  }
 
 }

@@ -9,6 +9,10 @@ import { ContactComponent } from './contact/contact.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
+import { FloatLabelModule } from "primeng/floatlabel";
+import { InputTextModule } from 'primeng/inputtext';
+import { InputNumberModule } from 'primeng/inputnumber';
+
 
 
 @NgModule({
@@ -24,7 +28,11 @@ import { HttpClientModule } from '@angular/common/http';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
-]
+    HttpClientModule,
+    FloatLabelModule,
+    InputTextModule,
+    InputNumberModule,
+    HttpClientModule,
+   ]
 })
 export class ContactsModule { }

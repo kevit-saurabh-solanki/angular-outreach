@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './Auth/login/login.component';
+import { authGuard } from './Auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -11,7 +12,8 @@ const routes: Routes = [
   {
     path: 'contacts',
     loadChildren: () => import('./Contacts/contacts.module').then(m => m.ContactsModule),
-    title: 'Contacts'
+    title: 'Contacts',
+    canActivate: [authGuard]
   },
   {
     path: '',

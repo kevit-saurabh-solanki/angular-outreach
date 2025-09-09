@@ -6,13 +6,13 @@
     <div class="detail-box">
         <p class="detail _id">Contact Id: {{contact._id}}</p>
         <p class="detail phoneNumber">Contact Number: {{contact.phoneNumber}}</p>
-        <p class="detail tags">Tags: {{contact.tags}}</p>
-        <p class="detail workspaceId">Belongs to Workspace Id: {{contact.workspaceId}}</p>
-        <p class="detail Created By">Created By: {{contact.createdBy}}</p>
+        <p class="detail tags">Tags: <span *ngFor="let tag of contact.tags" class="badge">{{tag}}</span></p>
+        <p class="detail workspaceId">Belongs to Workspace Id: {{contact.workspaceId._id}}</p>
+        <p class="detail Created By">Created By: {{contact.createdBy.email}}</p>
     </div>
     <div class="action-box">
-        <button type="button" class="edit">Edit</button>
-        <button type="button" class="delete">Delete</button>
-        <button type="button" class="back" (click)="back()">Back</button>
+        <button type="button" class="edit" (click)="redirectToEdit()">Edit</button>
+        <button type="button" class="delete" (click)="deleteContact(contact._id)">Delete</button>
+        <button type="button" class="back" (click)="goBack()" >Back</button>
     </div>
 </div>
