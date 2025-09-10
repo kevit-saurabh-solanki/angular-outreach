@@ -93,4 +93,11 @@
             }
         }
     }
+
+    .message-box {
+        display: flex;
+        flex-wrap: wrap; // allows multiple rows if too many cards
+        gap: 1rem; // space between cards
+        justify-content: flex-start; // align to left
+    }
 }
