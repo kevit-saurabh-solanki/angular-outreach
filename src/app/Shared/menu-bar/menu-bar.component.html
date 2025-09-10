@@ -7,15 +7,24 @@
             <a class="menu-item" [class.active]="activeTab === 'home'" (click)="setActive('home')">
                 Home
             </a>
-            <a class="menu-item" [class.active]="activeTab === 'contacts'" [routerLink]="['/contacts']" (click)="setActive('contacts')">
+            <a class="menu-item" [class.active]="activeTab === 'contacts'" [routerLink]="['/contacts']"
+                (click)="setActive('contacts')">
                 Contacts
             </a>
             <a class="menu-item" [class.active]="activeTab === 'campaign'" (click)="setActive('campaign')">
                 Campaigns
             </a>
-            <a class="menu-item" [class.active]="activeTab === 'message'" [routerLink]="['/messages']" (click)="setActive('message')" >
+            <a class="menu-item" [class.active]="activeTab === 'message'" [routerLink]="['/messages']"
+                (click)="setActive('message')">
                 Message
             </a>
+        </div>
+        <div class="workspace-box">
+            <select name="workspace" (change)="onWorkspaceChange($event)">
+                <option *ngFor="let ws of user.workspaceId" [value]="ws._id">
+                    {{ ws.name }}
+                </option>
+            </select>
         </div>
         <a class="signout" (click)="logout()">Sign-out</a>
     </div>

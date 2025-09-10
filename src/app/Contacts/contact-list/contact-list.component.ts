@@ -15,11 +15,10 @@ export class ContactListComponent {
   constructor(private contactService: ContactsService) { }
 
   ngOnInit() {
-    this.getContacts();
-  }
+    const workspaceId = localStorage.getItem('workspaceId');
+    if(!workspaceId) return;
 
-  getContacts() {
-    this.contactService.getContactByUserId().subscribe({
+    this.contactService.getContactsByWorkspaceId(workspaceId).subscribe({
       next: (response) => {
         console.log('Contacts fetched');
         this.contacts = response as ContactInterface[];
@@ -30,4 +29,5 @@ export class ContactListComponent {
       }
     });
   }
+
 }

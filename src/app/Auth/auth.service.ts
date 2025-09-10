@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { loginInterface } from './login.interface';
-import { catchError, tap, throwError } from 'rxjs';
+import { catchError, tap, throwError, switchMap, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -18,17 +18,29 @@ export class AuthService {
 
 
   login(body: loginInterface) {
-    return this.http.post<{ token: string, workspaceId?: string }>(this.baseUrl, body).pipe(
-      tap((res) => {
-        localStorage.setItem('token', res.token); // save token here
-        if (res.workspaceId) {
-          localStorage.setItem('workspaceId', res?.workspaceId)
-        } 
-        this.authState.next(true);
+    return this.http.post<{ token: string }>(this.baseUrl, body).pipe(
+      switchMap((res) => {
+        const token = res.token;
+        localStorage.setItem('token', token);
+
+        // decode token using jwt-decode
+        const decoded: any = jwtDecode(token);
+        const userId = decoded._id;
+
+        // fetch user object
+        return this.http.get<any>(`http://localhost:3000/users/${userId}`).pipe(
+          tap((user) => {
+            localStorage.setItem('user', JSON.stringify(user));
+            if (user.workspaceId && user.workspaceId.length > 0) {
+              localStorage.setItem('workspaceId', user.workspaceId[0]._id);
+            }
+            this.authState.next(true);
+          })
+        );
       }),
       catchError((err) => {
         console.error('Login failed:', err);
-        return throwError(() => err); // return error properly
+        return throwError(() => err);
       })
     );
   }
