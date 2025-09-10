@@ -14,6 +14,7 @@ export class MessageFormComponent {
   messageTypeOption: any;
   message?: MessageInterface;
   messageForm!: FormGroup;
+  successMessage?: boolean;
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private messageService: MessageService, private location: Location) { }
 
@@ -22,6 +23,7 @@ export class MessageFormComponent {
       title: ['', Validators.required],
       messageType: ['', Validators.required],
       content: ['', Validators.required],
+      imagePath: ['']
     });
 
     const id = this.route.snapshot.paramMap.get('id');
@@ -29,6 +31,15 @@ export class MessageFormComponent {
       this.messageService.getMessageById(id).subscribe({
         next: (msg) => {
           this.message = (msg as MessageInterface);
+
+          if (this.message) {
+            this.messageForm.patchValue({
+              title: this.message.title,
+              messageType: this.message.messageType,
+              content: this.message.content,
+              imagePath: this.message.imagePath || ''
+            });
+          }
         },
         error: (err) => {
           console.error('Error fetching message:', err);
@@ -36,7 +47,7 @@ export class MessageFormComponent {
       });
     }
 
-    this.messageTypeOption = [{ messageType: "Text" }, { messageType: "Text and Image" }];
+    this.messageTypeOption = ["Text", "Text and Image"];
   }
 
   get title() {
@@ -62,6 +73,7 @@ export class MessageFormComponent {
     const messageToAdd: SendMessageInterface = {
       title: formValue.title,
       messageType: formValue.messageType,
+      imagePath: formValue.imagePath || '',
       content: formValue.content,
       workspaceId: workspaceId || ''
     };
@@ -69,6 +81,7 @@ export class MessageFormComponent {
     this.messageService.addMessage(messageToAdd).subscribe({
       next: (result) => {
         this.messageForm.reset();
+        this.successMessage = true;
         console.log('Message added:', result);
       },
       error: (err) => {
@@ -93,6 +106,7 @@ export class MessageFormComponent {
     this.messageService.editMessage(messageToEdit, this.message._id).subscribe({
       next: (result) => {
         this.messageForm.reset();
+        this.successMessage = true;
         console.log('Message edited:', result);
       },
       error: (err) => {

@@ -2,6 +2,7 @@ export interface MessageInterface {
     _id: string;
     title: string;
     messageType: string;
+    imagePath?: string;
     content: string;
 
     workspaceId: {
@@ -22,6 +23,7 @@ export interface MessageInterface {
 export interface SendMessageInterface {
     title: string;
     messageType: string;
+    imagePath?: string;
     content: string;
     workspaceId: string;
 }

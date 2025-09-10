@@ -32,6 +32,21 @@ export class MessageTemplateComponent {
   }
 
   redirectToEdit() {
-    this.router.navigate(['contacts/edit', this.message?._id]);
+    this.router.navigate(['messages/edit', this.message?._id]);
+  }
+
+  deleteMessage(messageId: string) {
+    const confirmDelete = window.confirm('Are you sure you want to delete this message?');
+    if (!confirmDelete) return;
+
+    this.messageService.deleteMessage(messageId).subscribe({
+      next: () => {
+        console.log(`Message ${messageId} deleted`);
+        this.router.navigate(['/messages']);
+      },
+      error: (err: any) => {
+        console.error('Error deleting message:', err);
+      }
+    });
   }
 }

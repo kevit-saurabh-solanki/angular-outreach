@@ -7,12 +7,17 @@
         <p class="detail _id">Message Id: {{message._id}}</p>
         <p class="detail title">Title: {{message.title}}</p>
         <p class="detail messageType">Type: {{message.messageType}}</p>
+        <div *ngIf="message.imagePath">
+            <p class="detail imagePath">Image</p>
+            <img [src]="message.imagePath" alt="error loading thumbnail" />
+        </div>
+        <p class="detail content">Content: {{message.content}}</p>
         <p class="detail workspaceId">Belongs to Workspace: {{message.workspaceId.name}}</p>
         <p class="detail Created By">Created By: {{message.createdBy.email}}</p>
     </div>
     <div class="action-box">
         <button type="button" class="edit" (click)="redirectToEdit()">Edit</button>
-        <button type="button" class="delete">Delete</button>
+        <button type="button" class="delete" (click)="deleteMessage(message._id)">Delete</button>
         <button type="button" class="back" (click)="goBack()" >Back</button>
     </div>
 </div>

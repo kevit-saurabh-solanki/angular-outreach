@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ContactInterface } from '../contact.interface';
 import { ContactsService } from '../contacts.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'tr[app-contact]',
@@ -10,7 +11,7 @@ import { ContactsService } from '../contacts.service';
 export class ContactComponent {
   @Input() contact!: ContactInterface;
 
-  constructor(private contactService: ContactsService) {}
+  constructor(private contactService: ContactsService, private router: Router) { }
 
   deleteContact(contactId: string) {
     const confirmDelete = window.confirm('Are you sure you want to delete this contact?');
@@ -19,6 +20,7 @@ export class ContactComponent {
     this.contactService.deleteContact(contactId).subscribe({
       next: () => {
         console.log('Contact deleted');
+        this.router.navigate(['/contacts']);
       },
       error: (err) => {
         console.error('Error deleting contact:', err);
