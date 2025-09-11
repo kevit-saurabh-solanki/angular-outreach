@@ -4,10 +4,11 @@ import { MenuBarComponent } from "./menu-bar/menu-bar.component";
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
     declarations: [MenuBarComponent],
-    imports: [TabMenuModule, SidebarModule, ButtonModule, CommonModule],
+    imports: [TabMenuModule, SidebarModule, ButtonModule, CommonModule, FormsModule],
     exports: [MenuBarComponent]
 })
 export class SharedModule {}

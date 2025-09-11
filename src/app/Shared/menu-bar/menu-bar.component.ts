@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../Auth/auth.service';
 import { Router } from '@angular/router';
+import { SharedService } from '../shared.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class MenuBarComponent {
   user: any;
   selectedWorkspaceId: string = '';
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private router: Router, private sharedService: SharedService) { }
 
   setActive(tab: string) {
     this.activeTab = tab;
@@ -42,19 +43,17 @@ export class MenuBarComponent {
   }
 
   onWorkspaceChange(event: any) {
+    // const newWorkspaceId = event.target.value;
+
+    // // Store new workspaceId
+    // localStorage.setItem('workspaceId', newWorkspaceId);
+
+    // // Update local variable if needed
+    // this.selectedWorkspaceId = newWorkspaceId;
+
     const newWorkspaceId = event.target.value;
-    console.log(newWorkspaceId);
-
-    // Remove previous workspaceId from localStorage
-    localStorage.removeItem('workspaceId');
-
-    // Store new workspaceId
-    localStorage.setItem('workspaceId', newWorkspaceId);
-
-    console.log('Stored:', localStorage.getItem('workspaceId'));
-
-    // Update local variable if needed
     this.selectedWorkspaceId = newWorkspaceId;
+    this.sharedService.setWorkspace(newWorkspaceId);
   }
 
 }

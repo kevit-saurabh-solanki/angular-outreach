@@ -20,13 +20,13 @@
             </a>
         </div>
         <div class="workspace-box">
-            <select name="workspace" (change)="onWorkspaceChange($event)">
+            <select name="workspace" [(ngModel)]="selectedWorkspaceId" (change)="onWorkspaceChange($event)">
                 <option *ngFor="let ws of user.workspaceId" [value]="ws._id">
                     {{ ws.name }}
                 </option>
             </select>
         </div>
-        <a class="signout" (click)="logout()">Sign-out</a>
+        <a class="signout" (click)="logout()">Sign out</a>
     </div>
 </header>
 <router-outlet></router-outlet>
