@@ -10,8 +10,17 @@ import { Router } from '@angular/router';
 })
 export class MessageComponent {
   @Input() message!: MessageInterface;
+  userRole: string = '';
 
   constructor(private messageService: MessageService, private router: Router) { }
+
+  ngOnInit() {
+    const user = localStorage.getItem('user');
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      this.userRole = parsedUser.role;
+    }
+  }
 
   deleteMessage(messageId: string) {
     const confirmDelete = window.confirm('Are you sure you want to delete this message?');

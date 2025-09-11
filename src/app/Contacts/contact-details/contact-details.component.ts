@@ -10,6 +10,7 @@ import { ContactsService } from '../contacts.service';
 })
 export class ContactDetailsComponent {
   contact?: ContactInterface;
+  userRole: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -24,6 +25,7 @@ export class ContactDetailsComponent {
     if (id) {
       this.contactService.getContactById(id).subscribe({
         next: (contact) => {
+          console.log(contact);
           this.contact = {
             ...contact,
           };
@@ -34,6 +36,12 @@ export class ContactDetailsComponent {
           this.router.navigate(['/contacts']);
         },
       });
+    }
+
+    const user = localStorage.getItem('user');
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      this.userRole = parsedUser.role;
     }
   }
 

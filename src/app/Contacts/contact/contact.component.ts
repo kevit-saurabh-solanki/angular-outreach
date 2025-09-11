@@ -10,8 +10,17 @@ import { Router } from '@angular/router';
 })
 export class ContactComponent {
   @Input() contact!: ContactInterface;
+  userRole: string = '';
 
   constructor(private contactService: ContactsService, private router: Router) { }
+
+  ngOnInit() {
+    const user = localStorage.getItem('user');
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      this.userRole = parsedUser.role;
+    }
+  }
 
   deleteContact(contactId: string) {
     const confirmDelete = window.confirm('Are you sure you want to delete this contact?');

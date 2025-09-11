@@ -1,25 +1,25 @@
 <app-menu-bar></app-menu-bar>
 <div class="mainBox">
     <div class="title-box">
-        <h1 class="title">Contacts</h1>
+        <h1 class="title">Campaigns</h1>
     </div>
     <div class="search-add-box">
-        <input type="text" placeholder="Search Contact">
+        <input type="text" placeholder="Search Campaign">
         <button type="button" class="search">Search</button>
-        <button type=" button" class="add" [routerLink]="['/contacts/add']" *ngIf="userRole === 'editor'">Add Contact</button>
+        <button type=" button" class="add" [routerLink]="['/campaigns/add']" *ngIf="userRole === 'editor'">Add Campaign</button>
     </div>
     <div class="table-box">
         <table>
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Contact</th>
+                    <th>Status</th>
                     <th>Tags</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr app-contact *ngFor="let contact of contacts" [contact]="contact"></tr>
+                <tr app-campaign *ngFor="let campaign of campaigns" [campaign]="campaign"></tr>
             </tbody>
         </table>
     </div>

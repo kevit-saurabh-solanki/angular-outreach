@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MessageInterface } from '../message.interface';
 import { MessageService } from '../message.service';
+import { SharedService } from '../../Shared/shared.service';
 
 @Component({
   selector: 'app-message-list',
@@ -9,22 +10,29 @@ import { MessageService } from '../message.service';
 })
 export class MessageListComponent {
   messages: MessageInterface[] = [];
+  userRole: string = '';
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService, private sharedService: SharedService) { }
 
   ngOnInit() {
-    this.getAllMessages();
-  }
+    this.sharedService.workspaceId$.subscribe(id => {
+      if (!id) return
 
-  getAllMessages() {
-    this.messageService.getAllMessages().subscribe({
-      next: (response: any) => {
-        console.log('messages fetched');
-        this.messages = response as MessageInterface[];
-      },
-      error: (err: any) => {
-        console.error('Error fetching messages:', err);
-      }
-    });
+      this.messageService.getMessagesByWorkspaceId(id).subscribe({
+        next: (response) => {
+          this.messages = response as MessageInterface[];
+          return response;
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
+    })
+
+    const user = localStorage.getItem('user');
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      this.userRole = parsedUser.role;
+    }
   }
 }

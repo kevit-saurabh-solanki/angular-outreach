@@ -41,4 +41,13 @@ export class MessageService {
             catchError(err => throwError(() => err))
         );
     }
+
+    getMessagesByWorkspaceId(workspaceId: string) {
+        return this.http.get(`${this.baseUrl}/workspace/${workspaceId}`).pipe(
+            catchError(err => {
+                console.error('error fetching messages:', err);
+                return throwError(() => err);
+            })
+        )
+    }
 }
