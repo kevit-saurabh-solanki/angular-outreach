@@ -10,6 +10,7 @@ import { MessageService } from '../message.service';
 })
 export class MessageTemplateComponent {
   message?: MessageInterface;
+  userRole: string = '';
 
   constructor(private router: Router, private messageService: MessageService, private route: ActivatedRoute) { }
 
@@ -24,6 +25,12 @@ export class MessageTemplateComponent {
           console.error('Error fetching message:', err);
         }
       });
+    }
+
+    const user = localStorage.getItem('user');
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      this.userRole = parsedUser.role;
     }
   }
 

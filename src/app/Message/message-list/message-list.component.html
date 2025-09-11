@@ -6,7 +6,7 @@
     <div class="search-add-box">
         <input type="text" placeholder="Search Message">
         <button type="button" class="search">Search</button>
-        <button type=" button" class="add" [routerLink]="['add']">Add Message</button>
+        <button type=" button" class="add" *ngIf="userRole === 'editor'" [routerLink]="['add']">Add Message</button>
     </div>
     <div class="message-box">
         <app-message *ngFor="let message of messages" [message]="message"></app-message>

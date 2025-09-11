@@ -12,12 +12,13 @@ import { SharedService } from '../../Shared/shared.service';
 export class ContactListComponent {
 
   contacts!: ContactInterface[];
+  userRole: string = '';
 
   constructor(private contactService: ContactsService, private sharedService: SharedService) { }
 
   ngOnInit() {
     this.sharedService.workspaceId$.subscribe(id => {
-      if(!id) return
+      if (!id) return
 
       this.contactService.getContactsByWorkspaceId(id).subscribe({
         next: (response) => {
@@ -29,6 +30,12 @@ export class ContactListComponent {
         }
       })
     })
+
+    const user = localStorage.getItem('user');
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      this.userRole = parsedUser.role;
+    }
   }
 
 }

@@ -16,8 +16,8 @@
         <p class="detail Created By">Created By: {{message.createdBy.email}}</p>
     </div>
     <div class="action-box">
-        <button type="button" class="edit" (click)="redirectToEdit()">Edit</button>
-        <button type="button" class="delete" (click)="deleteMessage(message._id)">Delete</button>
+        <button type="button" class="edit" *ngIf="userRole === 'editor'" (click)="redirectToEdit()">Edit</button>
+        <button type="button" class="delete" *ngIf="userRole === 'editor'" (click)="deleteMessage(message._id)">Delete</button>
         <button type="button" class="back" (click)="goBack()" >Back</button>
     </div>
 </div>

@@ -5,8 +5,8 @@
   </div>
   <div class="actions">
     <button [routerLink]="['/messages', message._id]">View</button>
-    <button [routerLink]="['edit', message._id]">Edit</button>
-    <button (click)="deleteMessage(message._id)">Delete</button>
+    <button [routerLink]="['edit', message._id]" *ngIf="userRole === 'editor'">Edit</button>
+    <button (click)="deleteMessage(message._id)" *ngIf="userRole === 'editor'">Delete</button>
   </div>
 </div>
 

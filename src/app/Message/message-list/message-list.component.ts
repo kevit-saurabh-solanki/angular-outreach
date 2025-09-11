@@ -10,24 +10,11 @@ import { SharedService } from '../../Shared/shared.service';
 })
 export class MessageListComponent {
   messages: MessageInterface[] = [];
+  userRole: string = '';
 
   constructor(private messageService: MessageService, private sharedService: SharedService) { }
 
   ngOnInit() {
-    // const workspaceId = localStorage.getItem('workspaceId');
-    // if (!workspaceId) return;
-
-    // this.messageService.getMessagesByWorkspaceId(workspaceId).subscribe({
-    //   next: (response) => {
-    //     console.log('Contacts fetched');
-    //     this.messages = response as MessageInterface[];
-    //     return response;
-    //   },
-    //   error: (err) => {
-    //     console.log(err)
-    //   }
-    // });
-
     this.sharedService.workspaceId$.subscribe(id => {
       if (!id) return
 
@@ -41,5 +28,11 @@ export class MessageListComponent {
         }
       })
     })
+
+    const user = localStorage.getItem('user');
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      this.userRole = parsedUser.role;
+    }
   }
 }
