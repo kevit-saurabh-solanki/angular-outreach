@@ -43,7 +43,7 @@ export class MessageService {
     }
 
     getMessagesByWorkspaceId(workspaceId: string) {
-        return this.http.get(`http://localhost:3000/messages/workspace/${workspaceId}`).pipe(
+        return this.http.get(`${this.baseUrl}/workspace/${workspaceId}`).pipe(
             catchError(err => {
                 console.error('error fetching messages:', err);
                 return throwError(() => err);

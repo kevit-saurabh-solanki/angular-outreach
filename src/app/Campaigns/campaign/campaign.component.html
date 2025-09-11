@@ -1,0 +1,10 @@
+<td class="row-item name">{{campaign.name}}</td>
+<td class="row-item status">{{campaign.status}}</td>
+<td class="row-item tags"><span *ngFor="let tag of campaign.targetTags" class="badge">{{tag}}</span></td>
+<td class="row-item buttons">
+    <button class="editBtn"  *ngIf="userRole === 'editor'" [routerLink]="['edit', campaign._id]">Edit</button>
+    <button class="deleteBtn"  *ngIf="userRole === 'editor'" (click)="deleteCampaign(campaign._id)">Delete</button>
+    <button class="ViewBtn" [routerLink]="['/campaigns', campaign._id]">View</button>
+    <button class="launchBtn">Launch</button>
+    <button class="copyBtn">Copy</button>
+</td>

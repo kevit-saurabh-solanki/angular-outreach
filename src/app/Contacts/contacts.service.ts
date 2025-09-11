@@ -10,29 +10,16 @@ export class ContactsService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl = "http://localhost:3000/contacts";
-
-  getContactByUserId() {
-    return this.http.get(`${this.baseUrl}`).pipe(
-      catchError((err) => {
-        console.log(err);
-        return throwError(() => err);
-      })
-    );
-  }
+  baseUrl: string = "http://localhost:3000/contacts";
 
   getContactById(id: string) {
-    return this.http.get<ContactInterface>(`http://localhost:3000/contacts/${id}`).pipe(
+    return this.http.get<ContactInterface>(`${this.baseUrl}/${id}`).pipe(
       map(contact => ({
         ...contact,
-        // name: contact.name.toUpperCase(),
-        // phoneNumber: `+91-${contact.phoneNumber}` not working
       })),
 
-      // 2️⃣ retry request if it fails
       retry(1),
 
-      // 3️⃣ handle errors gracefully
       catchError(err => {
         console.error('Error fetching contact:', err);
         return throwError(() => err);
@@ -50,7 +37,7 @@ export class ContactsService {
   }
 
   editContact({ name, phoneNumber, tags, workspaceId }: SendContactInterface, contactId: string) {
-    return this.http.put(`http://localhost:3000/contacts/${contactId}`, { name, phoneNumber, tags, workspaceId }).pipe(
+    return this.http.put(`${this.baseUrl}/${contactId}`, { name, phoneNumber, tags, workspaceId }).pipe(
       catchError(err => {
         console.error('Error editing contact:', err);
         return throwError(() => err);
@@ -59,7 +46,7 @@ export class ContactsService {
   }
 
   deleteContact(contactId: string) {
-    return this.http.delete(`http://localhost:3000/contacts/${contactId}`).pipe(
+    return this.http.delete(`${this.baseUrl}/${contactId}`).pipe(
       catchError(err => {
         console.error('Error deleting contact:', err);
         return throwError(() => err);
@@ -68,7 +55,7 @@ export class ContactsService {
   }
 
   getContactsByWorkspaceId(workspaceId: string) {
-    return this.http.get(`http://localhost:3000/contacts/workspace/${workspaceId}`).pipe(
+    return this.http.get(`${this.baseUrl}/workspace/${workspaceId}`).pipe(
       catchError(err => {
         console.error('error fetching contacts:', err);
         return throwError(() => err);

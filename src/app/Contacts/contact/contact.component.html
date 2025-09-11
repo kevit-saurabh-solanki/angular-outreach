@@ -6,5 +6,3 @@
     <button class="deleteBtn" (click)="deleteContact(contact._id)" *ngIf="userRole === 'editor'">Delete</button>
     <button class="ViewBtn" [routerLink]="['/contacts', contact._id]">View</button>
 </td>
-
-<router-outlet></router-outlet>

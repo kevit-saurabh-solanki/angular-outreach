@@ -1,0 +1,26 @@
+<app-menu-bar></app-menu-bar>
+<div class="mainBox">
+    <div class="title-box">
+        <h1 class="title">Campaigns</h1>
+    </div>
+    <div class="search-add-box">
+        <input type="text" placeholder="Search Campaign">
+        <button type="button" class="search">Search</button>
+        <button type=" button" class="add" [routerLink]="['/campaigns/add']" *ngIf="userRole === 'editor'">Add Campaign</button>
+    </div>
+    <div class="table-box">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Tags</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr app-campaign *ngFor="let campaign of campaigns" [campaign]="campaign"></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
