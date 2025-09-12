@@ -58,47 +58,47 @@
                 transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease;
 
                 &.editBtn {
-                    background: #3B82F6;
+                    background: #2563EB; // lightest
                     color: #F3F4F6;
 
                     &:hover {
-                        background: #2563EB;
+                        background: #1E40AF; // slightly darker
                     }
                 }
 
                 &.deleteBtn {
-                    background: #2563EB;
+                    background: #2563EB; // medium
                     color: #F3F4F6;
 
                     &:hover {
-                        background: #1E40AF;
-                    }
-                }
-
-                &.ViewBtn {
-                    background: #1E40AF;
-                    color: #F3F4F6;
-
-                    &:hover {
-                        background: #3B82F6;
+                        background: #1E40AF; // darker
                     }
                 }
 
                 &.launchBtn {
-                    background: #2563EB;
+                    background: #2563EB; // start light
                     color: #F3F4F6;
 
                     &:hover {
-                        background: #1E40AF;
+                        background: #1E40AF; // darker
                     }
                 }
 
                 &.copyBtn {
-                    background: #1E40AF;
+                    background: #2563EB; // medium
                     color: #F3F4F6;
 
                     &:hover {
-                        background: #3B82F6;
+                        background: #1E40AF; // darkest
+                    }
+                }
+
+                &.viewBtn {
+                    background: #1E40AF; // darkest
+                    color: #F3F4F6;
+
+                    &:hover {
+                        background: #3B82F6; // cycle back to light
                     }
                 }
             }

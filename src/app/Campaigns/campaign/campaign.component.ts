@@ -23,7 +23,7 @@ export class CampaignComponent {
   }
 
   deleteCampaign(campaignId: string) {
-    const confirmDelete = window.confirm('Are you sure you want to delete this contact?');
+    const confirmDelete = window.confirm('Are you sure you want to delete this campaign?');
     if (!confirmDelete) return;
 
     this.campaignService.deleteCampaign(campaignId).subscribe({

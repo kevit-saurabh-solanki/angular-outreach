@@ -1,1 +1,17 @@
-
+<app-menu-bar></app-menu-bar>
+<div *ngIf="campaign" class="mainBox">
+    <div class="title-box">
+        <h1 class="title">{{campaign.name | uppercase}}</h1>
+    </div>
+    <div class="detail-box">
+        <p class="detail _id">Campaign Id: {{campaign._id}}</p>
+        <p class="detail targetTags">Target Tags: <span *ngFor="let tag of campaign.targetTags" class="badge">{{tag}}</span></p>
+        <p class="detail workspaceId">Belongs to Workspace: {{campaign.workspaceId.name}}</p>
+        <p class="detail CreatedBy">Created By: {{campaign.createdBy.email}}</p>
+    </div>
+    <div class="action-box">
+        <button type="button" class="edit" (click)="redirectToEdit()" *ngIf="userRole === 'editor'">Edit</button>
+        <button type="button" class="delete" (click)="deleteCampaign(campaign._id)" *ngIf="userRole === 'editor'">Delete</button>
+        <button type="button" class="back" (click)="goBack()" >Back</button>
+    </div>
+</div>

@@ -41,7 +41,6 @@ export class CampaignFormComponent {
       if (!id) return;
       this.messageService.getMessagesByWorkspaceId(id).subscribe({
         next: (response) => {
-          console.log('messages fetched');
           this.messages = response as MessageInterface[];
 
           this.messageTypeOption = this.messages.map(m => ({
@@ -68,7 +67,6 @@ export class CampaignFormComponent {
     if (campaignId) {
       this.campaignService.getCampaignById(campaignId).subscribe({
         next: (campaign) => {
-          console.log(campaign);
           this.campaign = (campaign as CampaignInterface);
 
           this.campaignForm.patchValue({

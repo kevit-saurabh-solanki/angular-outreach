@@ -4,7 +4,7 @@
 <td class="row-item buttons">
     <button class="editBtn"  *ngIf="userRole === 'editor'" [routerLink]="['edit', campaign._id]">Edit</button>
     <button class="deleteBtn"  *ngIf="userRole === 'editor'" (click)="deleteCampaign(campaign._id)">Delete</button>
-    <button class="ViewBtn" [routerLink]="['/campaigns', campaign._id]">View</button>
     <button class="launchBtn">Launch</button>
     <button class="copyBtn">Copy</button>
+     <button class="ViewBtn" [routerLink]="['/campaigns', campaign._id]">View</button>
 </td>
