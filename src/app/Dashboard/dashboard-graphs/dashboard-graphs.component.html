@@ -1,0 +1,6 @@
+<div class="chart-card">
+    <h3>{{ title }}</h3>
+    <canvas *ngIf="chartData.labels?.length" baseChart [data]="chartData" [options]="chartOptions" [type]="type">
+    </canvas>
+    <p *ngIf="!chartData.labels?.length">No data available</p>
+</div>

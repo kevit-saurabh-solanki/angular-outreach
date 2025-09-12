@@ -1,0 +1,9 @@
+<div class="welcome-card">
+  <h2>Welcome, {{ user?.email || 'Guest' }}!</h2>
+  <p class="role">Role: {{ user?.role || 'N/A' }}</p>
+
+  <div class="workspaces" *ngIf="user?.workspaceId?.length">
+    Workspaces:
+    <span *ngFor="let ws of user.workspaceId" class="workspace-badge">{{ ws.name }}</span>
+  </div>
+</div>

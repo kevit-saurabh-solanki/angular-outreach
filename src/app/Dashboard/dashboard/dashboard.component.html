@@ -1,0 +1,12 @@
+<app-menu-bar></app-menu-bar>
+<app-welcome-message></app-welcome-message>
+<div class="dashboard-charts">
+    <app-dashboard-graphs [title]="'Campaigns per Day'" [chartData]="campaignsPerDay">
+    </app-dashboard-graphs>
+
+    <app-dashboard-graphs [title]="'Messages Sent per Type per Day'" [chartData]="messagesPerTypePerDay">
+    </app-dashboard-graphs>
+
+    <app-dashboard-graphs [title]="'Contacts Reached per Day'" [chartData]="contactsReachedPerDay">
+    </app-dashboard-graphs>
+</div>

@@ -4,14 +4,18 @@
             <strong class="title">Outreach Hub</strong>
         </div>
         <div class="menu-list">
-            <a class="menu-item" [class.active]="activeTab === 'home'" (click)="setActive('home')">Home</a>
-            <a class="menu-item" [class.active]="activeTab === 'contacts'" [routerLink]="['/contacts']"
-                (click)="setActive('contacts')">Contacts</a>
+            <a class="menu-item" [class.active]="activeTab === 'home'" (click)="setActive('home')"
+                [routerLink]="['/dashboard']">Home
+            </a>
+            <a class="menu-item" [class.active]="activeTab === 'contacts'" (click)="setActive('contacts')"
+                [routerLink]="['/contacts']">Contacts
+            </a>
             <a class="menu-item" [class.active]="activeTab === 'campaign'" (click)="setActive('campaign')"
                 [routerLink]="['/campaigns']"> Campaigns
             </a>
             <a class="menu-item" [class.active]="activeTab === 'message'" [routerLink]="['/messages']"
-                (click)="setActive('message')"> Message </a>
+                (click)="setActive('message')"> Message 
+            </a>
         </div>
         <div class="workspace-box">
             <select name="workspace" [(ngModel)]="selectedWorkspaceId" (change)="onWorkspaceChange($event)">

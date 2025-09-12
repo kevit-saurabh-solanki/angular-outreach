@@ -10,6 +10,12 @@ const routes: Routes = [
     title: 'Outreach Hub Login'
   },
   {
+    path: 'dashboard',
+    loadChildren: () => import('./Dashboard/dashboard.module').then(m => m.DashboardModule),
+    title: 'Dashboard',
+    canActivate: [authGuard]
+  },
+  {
     path: 'contacts',
     loadChildren: () => import('./Contacts/contacts.module').then(m => m.ContactsModule),
     title: 'Contacts',
