@@ -1,1 +1,66 @@
-<p>campaign-form works!</p>
+<form [formGroup]="campaignForm" (ngSubmit)="campaign ? editCampaign() : addCampaign()">
+
+    <div class="card flex justify-content-center">
+        <p-floatLabel>
+            <input pInputText id="name" formControlName="name" />
+            <label for="name">Name</label>
+        </p-floatLabel>
+
+        <div class="validation-wrapper">
+            <small class="validation-message" *ngIf="name?.invalid && name?.touched">
+                <span *ngIf="name?.errors?.['required']">
+                    Name is required
+                </span>
+            </small>
+        </div>
+    </div>
+
+    <div class="card p-fluid">
+        <p-floatLabel>
+            <p-chips id="targetTags" formControlName="targetTags" />
+            <label for="targetTags">Tags to target</label>
+        </p-floatLabel>
+
+        <div class="validation-wrapper">
+            <small class="validation-message" *ngIf="targetTags?.invalid && targetTags?.touched">
+                <span *ngIf="targetTags?.errors?.['required']">
+                    Enter at least one tag
+                </span>
+            </small>
+        </div>
+    </div>
+
+    <div class="card flex justify-content-center">
+        <p-floatLabel>
+            <p-dropdown class="dropdown" [options]="messageTypeOption" optionLabel="label" optionValue="value"
+                inputId="float-label" inputId="float-label" formControlName="messageId" />
+            <label for="float-label">Select a Message Template</label>
+        </p-floatLabel>
+
+        <div class="validation-wrapper">
+            <small class="validation-message" *ngIf="messageId?.invalid && messageId?.touched">
+                <span *ngIf="messageId?.errors?.['required']">Message Template is required.</span>
+            </small>
+        </div>
+    </div>
+
+    <div class="card flex justify-content-center">
+        <p-floatLabel>
+            <textarea id="float-input" rows="5" cols="30" pInputTextarea formControlName="content"></textarea>
+            <label for="float-input">Content</label>
+        </p-floatLabel>
+
+        <div class="validation-wrapper">
+            <small class="validation-message" *ngIf="content?.invalid && content?.touched">
+                <span *ngIf="content?.errors?.['required']">Content is required.</span>
+            </small>
+        </div>
+    </div>
+
+    <button type="submit" [disabled]="campaignForm.invalid">
+        {{ campaign ? 'Edit' : 'Add' }}
+    </button>
+    <button type="button" (click)="goBack()">Back</button>
+    <p class="success-message" *ngIf="!campaign && successMessage">Campaign Added SuccessFully</p>
+    <p class="success-message" *ngIf="campaign && successMessage">Campaign Edited SuccessFully</p>
+</form>
