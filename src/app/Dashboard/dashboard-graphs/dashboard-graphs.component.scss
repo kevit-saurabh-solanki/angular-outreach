@@ -1,0 +1,32 @@
+.chart-card {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+
+  h3 {
+    color: #1E40AF;
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+  }
+
+  .chart-container {
+    max-width: 400px; // smaller width
+    height: 250px; // smaller height
+    position: relative; // required by Chart.js
+    // margin: auto; // center it
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+
+  p {
+    color: #2563EB;
+    // text-align: center;
+    margin-top: 1rem;
+    font-weight: 500;
+  }
+}

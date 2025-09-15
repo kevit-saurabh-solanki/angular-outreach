@@ -7,6 +7,8 @@ import { DashboardTablesComponent } from './dashboard-tables/dashboard-tables.co
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../Shared/shared.module';
 import { NgChartsModule } from 'ng2-charts';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -21,7 +23,9 @@ import { NgChartsModule } from 'ng2-charts';
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
-    NgChartsModule
+    NgChartsModule,
+    HttpClientModule,
+    FormsModule
   ]
 })
 export class DashboardModule { }

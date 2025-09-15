@@ -14,8 +14,4 @@ export class DashboardGraphsComponent {
     responsive: true,
     plugins: { legend: { display: true } }
   };
-
-  ngOnChanges(): void {
-    // optional: transform data if needed on input change
-  }
 }
