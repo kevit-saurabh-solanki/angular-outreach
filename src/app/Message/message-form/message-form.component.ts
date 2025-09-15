@@ -82,7 +82,7 @@ export class MessageFormComponent {
       next: (result) => {
         this.messageForm.reset();
         this.successMessage = true;
-        console.log('Message added:', result);
+        console.log('Message added');
       },
       error: (err) => {
         console.error('Error adding message:', err);

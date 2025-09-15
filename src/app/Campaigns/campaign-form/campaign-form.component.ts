@@ -19,6 +19,7 @@ export class CampaignFormComponent {
   successMessage!: boolean;
   messageTypeOption: any;
   messages!: MessageInterface[];
+  selectedMessage?: MessageInterface;
 
   private messageService = inject(MessageService);
   private sharedService = inject(SharedService);
@@ -33,7 +34,8 @@ export class CampaignFormComponent {
       name: ['', Validators.required],
       messageId: ['', Validators.required],
       targetTags: [[], Validators.required],
-      content: ['', Validators.required]
+      content: ['', Validators.required],
+      url: ['']
     });
 
     //get the message template in dropdown-------------------------------------------------------------
@@ -56,9 +58,12 @@ export class CampaignFormComponent {
 
     //based on selected template patch content-------------------------------------------------------------
     this.campaignForm.get('messageId')?.valueChanges.subscribe(selectedId => {
-      const selectedMessage = this.messages.find(m => m._id === selectedId);
-      if (selectedMessage) {
-        this.campaignForm.patchValue({ content: selectedMessage.content });
+      this.selectedMessage = this.messages.find(m => m._id === selectedId);
+      if (this.selectedMessage) {
+        this.campaignForm.patchValue({ content: this.selectedMessage.content });
+        if (this.selectedMessage.imagePath) {
+          this.campaignForm.patchValue({ url: this.selectedMessage.imagePath });
+        }
       }
     });
 

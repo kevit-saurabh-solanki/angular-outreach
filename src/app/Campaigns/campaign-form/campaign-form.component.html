@@ -57,6 +57,13 @@
         </div>
     </div>
 
+    <div class="card flex justify-content-center" *ngIf="selectedMessage?.imagePath">
+        <p-floatLabel>
+            <input pInputText id="url" formControlName="url" />
+            <label for="url">Image URL</label>
+        </p-floatLabel>
+    </div>
+
     <button type="submit" [disabled]="campaignForm.invalid">
         {{ campaign ? 'Edit' : 'Add' }}
     </button>

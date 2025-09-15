@@ -3,6 +3,7 @@ export interface CampaignInterface {
     name: string;
     targetTags: string[];
     content: string;
+    imagePath?: string;
     status: string;
 
     messageId: {
@@ -30,5 +31,6 @@ export interface SendCampaignInterface {
     messageId: string;
     targetTags: string[];
     content: string;
+    imagePath?: string;
     workspaceId: string;
 }
