@@ -20,6 +20,7 @@ export class CampaignFormComponent {
   messageTypeOption: any;
   messages!: MessageInterface[];
   selectedMessage?: MessageInterface;
+  messageType!: string;
 
   private messageService = inject(MessageService);
   private sharedService = inject(SharedService);
@@ -35,7 +36,7 @@ export class CampaignFormComponent {
       messageId: ['', Validators.required],
       targetTags: [[], Validators.required],
       content: ['', Validators.required],
-      url: ['']
+      imagePath: ['']
     });
 
     //get the message template in dropdown-------------------------------------------------------------
@@ -60,9 +61,10 @@ export class CampaignFormComponent {
     this.campaignForm.get('messageId')?.valueChanges.subscribe(selectedId => {
       this.selectedMessage = this.messages.find(m => m._id === selectedId);
       if (this.selectedMessage) {
+        this.messageType = this.selectedMessage.messageType;
         this.campaignForm.patchValue({ content: this.selectedMessage.content });
         if (this.selectedMessage.imagePath) {
-          this.campaignForm.patchValue({ url: this.selectedMessage.imagePath });
+          this.campaignForm.patchValue({ imagePath: this.selectedMessage.imagePath });
         }
       }
     });
@@ -76,9 +78,10 @@ export class CampaignFormComponent {
 
           this.campaignForm.patchValue({
             name: this.campaign.name,
-            messageId: this.campaign.messageId.title,
+            messageId: this.campaign.messageId,
             targetTags: this.campaign.targetTags,
             content: this.campaign.content,
+            imagePath: this.campaign.imagePath
           });
         },
         error: (err) => console.error('Error loading campaign:', err)
@@ -117,6 +120,8 @@ export class CampaignFormComponent {
       name: formValue.name,
       messageId: formValue.messageId,
       content: formValue.content,
+      messageType: this.messageType,
+      imagePath: formValue.imagePath,
       targetTags: formValue.targetTags,
       workspaceId: workspaceId || ''
     };
@@ -144,7 +149,9 @@ export class CampaignFormComponent {
       name: formValue.name,
       messageId: formValue.messageId,
       targetTags: formValue.targetTags,
+      messageType: this.messageType,
       content: formValue.content,
+      imagePath: formValue.imagePath,
       workspaceId: workspaceId || ''
     };
 
