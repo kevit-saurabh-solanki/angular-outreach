@@ -1,1 +1,41 @@
-<p>dashboard-tables works!</p>
+<div class="main-table">
+    <div class="campaigns-table">
+        <h3>Recent 5 Campaigns</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Tags</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let c of campaigns">
+                    <td>{{ c.name }}</td>
+                    <td><span *ngFor="let tag of c.targetTags" class="badge">{{tag}}</span></td>
+                    <td>{{ c.status }}</td>
+                    <td>{{ c.createdAt | date:'short' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="tags-table">
+        <h3>Top 5 Tags</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tag</th>
+                    <th>Contacts</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let t of topTags">
+                    <td class="badge">{{ t.tag }}</td>
+                    <td>{{ t.count }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

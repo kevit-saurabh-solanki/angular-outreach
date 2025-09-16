@@ -20,9 +20,10 @@ export class DashboardService {
   baseUrl: string = 'http://localhost:3000/campaigns';
 
   getCampaignsPerDay(start: string, end: string) {
+    const workspaceId = localStorage.getItem('workspaceId') || '';
     return this.http.get<{ date: string, count: number }[]>(`${this.baseUrl}/campaign-per-day`,
       {
-        params: { start, end }
+        params: { start, end, workspaceId: workspaceId }
       }
     ).pipe(
       catchError((err) => {
@@ -33,9 +34,10 @@ export class DashboardService {
   }
 
   getCampaignsPerMessageType(start: string, end: string) {
+    const workspaceId = localStorage.getItem('workspaceId') || '';
     return this.http.get<graphDatatype>(`${this.baseUrl}/campaign-per-message-type`,
       {
-        params: { start, end }
+        params: { start, end, workspaceId: workspaceId }
       }
     ).pipe(
       catchError((err) => {
@@ -46,13 +48,28 @@ export class DashboardService {
   }
 
   getContactsReached(start: string, end: string) {
+    const workspaceId = localStorage.getItem('workspaceId') || '';
     return this.http.get<graphDatatype>(`${this.baseUrl}/contacts-reached-per-day`,
       {
-        params: { start, end }
+        params: { start, end, workspaceId: workspaceId }
       }
     ).pipe(
       catchError((err) => {
         console.log('Error fetching contacts count:', err);
+        return throwError(() => err);
+      })
+    )
+  }
+
+  getRecentCampaigns() {
+    const workspaceId = localStorage.getItem('workspaceId') || '';
+    return this.http.get(`${this.baseUrl}/recent-campaigns`,
+      {
+        params: { workspaceId: workspaceId }
+      }
+    ).pipe(
+      catchError((err) => {
+        console.log('Error fetching recent campaigns:', err);
         return throwError(() => err);
       })
     )

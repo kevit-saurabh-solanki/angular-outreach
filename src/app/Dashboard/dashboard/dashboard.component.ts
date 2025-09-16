@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ChartData } from 'chart.js';
 import { DashboardService } from '../dashboard.service';
+import { CampaignInterface } from '../../Campaigns/campaign.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,12 +15,14 @@ export class DashboardComponent {
   campaignsPerDay: ChartData<'bar'> = { labels: [], datasets: [] };
   messagesPerTypePerDay: ChartData<'bar'> = { labels: [], datasets: [] };
   contactsReachedPerDay: ChartData<'bar'> = { labels: [], datasets: [] };
+  recentCampaigns!: CampaignInterface[];
 
   startDate!: string;
   endDate!: string;
 
   ngOnInit(): void {
     this.loadCharts(); // initial load
+    this.loadTables();
   }
 
   loadCharts() {
@@ -57,7 +60,6 @@ export class DashboardComponent {
 
     this.dashboardService.getContactsReached(this.startDate, this.endDate).subscribe({
       next: (res) => {
-        console.log(res);
         this.contactsReachedPerDay = {
           labels: res.labels,
           datasets: res.datasets.map(ds => ({
@@ -65,6 +67,18 @@ export class DashboardComponent {
             data: ds.data
           }))
         };
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    })
+  }
+
+  loadTables() {
+    this.dashboardService.getRecentCampaigns().subscribe({
+      next: (res) => {
+        console.log(res);
+        this.recentCampaigns = (res as CampaignInterface[]);
       },
       error: (err) => {
         console.error(err);
