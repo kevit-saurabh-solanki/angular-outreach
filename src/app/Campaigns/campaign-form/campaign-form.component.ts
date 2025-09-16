@@ -121,7 +121,7 @@ export class CampaignFormComponent {
       messageId: formValue.messageId,
       content: formValue.content,
       messageType: this.messageType,
-      imagePath: formValue.imagePath,
+      ...(this.messageType === 'Text and Image' && formValue.imagePath ? { imagePath: formValue.imagePath } : {}),
       targetTags: formValue.targetTags,
       workspaceId: workspaceId || ''
     };
@@ -151,7 +151,7 @@ export class CampaignFormComponent {
       targetTags: formValue.targetTags,
       messageType: this.messageType,
       content: formValue.content,
-      imagePath: formValue.imagePath,
+      ...(this.messageType === 'Text and Image' && formValue.imagePath ? { imagePath: formValue.imagePath } : {}),
       workspaceId: workspaceId || ''
     };
 
@@ -159,7 +159,6 @@ export class CampaignFormComponent {
       next: (result) => {
         this.campaignForm.reset();
         this.successMessage = true;
-        console.log('Campaign added:', result);
       },
       error: (err) => {
         console.error('Error adding campaign:', err);
