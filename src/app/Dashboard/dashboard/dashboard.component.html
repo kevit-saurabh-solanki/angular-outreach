@@ -4,24 +4,24 @@
     <div class="title-box">
         <h1 class="title">Analytics</h1>
     </div>
-    <div class="graph-box">
-        <div class="date-filters">
-            <label>
-                From:
-                <input type="date" [(ngModel)]="startDate" (change)="loadCharts()">
-            </label>
-            <label>
-                To:
-                <input type="date" [(ngModel)]="endDate" (change)="loadCharts()">
-            </label>
-        </div>
+    <div class="date-filters">
+        <label>
+            From:
+            <input type="date" [(ngModel)]="startDate" (change)="loadCharts()">
+        </label>
+        <label>
+            To:
+            <input type="date" [(ngModel)]="endDate" (change)="loadCharts()">
+        </label>
+    </div>
+    <div class="graph-box"> 
         <app-dashboard-graphs [title]="'Campaigns per Day'" [chartData]="campaignsPerDay">
         </app-dashboard-graphs>
 
-        <!-- <app-dashboard-graphs [title]="'Messages Sent per Type per Day'" [chartData]="messagesPerTypePerDay">
-    </app-dashboard-graphs>
-
-    <app-dashboard-graphs [title]="'Contacts Reached per Day'" [chartData]="contactsReachedPerDay">
-    </app-dashboard-graphs> -->
+        <app-dashboard-graphs [title]="'Messages Sent per Type per Day'" [chartData]="messagesPerTypePerDay">
+        </app-dashboard-graphs>
     </div>
+
+    <!-- <app-dashboard-graphs [title]="'Contacts Reached per Day'" [chartData]="contactsReachedPerDay">
+    </app-dashboard-graphs> -->
 </div>
