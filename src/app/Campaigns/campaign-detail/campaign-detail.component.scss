@@ -1,0 +1,116 @@
+.mainBox {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 24px;
+    background: #F3F4F6;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+
+    &:hover {
+        transform: scale(1.01);
+    }
+
+    .title-box {
+        text-align: center;
+        margin-bottom: 20px;
+
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1E40AF;
+            letter-spacing: 1px;
+
+            &::after {
+                content: '';
+                display: block;
+                width: 80px;
+                height: 3px;
+                background: #3B82F6;
+                margin: 8px auto 0;
+                border-radius: 4px;
+            }
+        }
+    }
+
+    .detail-box {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 24px;
+
+        .detail {
+            font-size: 16px;
+            color: #1E40AF;
+
+            &.targetTags {
+                .badge {
+                    display: inline-block;
+                    background: #3B82F6;
+                    color: #F3F4F6;
+                    font-size: 12px;
+                    font-weight: 500;
+                    padding: 4px 10px;
+                    border-radius: 9999px;
+                    margin-right: 6px;
+                    transition: background 0.2s ease;
+
+                    &:hover {
+                        background: #1E40AF;
+                    }
+                }
+            }
+        }
+    }
+
+    .action-box {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+
+        button {
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.1s ease;
+
+            &.edit {
+                background: #3B82F6;
+                color: #F3F4F6;
+
+                &:hover {
+                    background: #1E40AF;
+                    transform: scale(1.05);
+                }
+            }
+
+            &.delete {
+                background: #1E40AF;
+                color: #F3F4F6;
+
+                &:hover {
+                    background: #3B82F6;
+                    transform: scale(1.05);
+                }
+            }
+
+            &.back {
+                background: transparent;
+                color: #1E40AF;
+                border: 1px solid #1E40AF;
+
+                &:hover {
+                    background: #EFF6FF;
+                    transform: scale(1.05);
+                }
+            }
+
+            &:active {
+                transform: scale(0.95);
+            }
+        }
+    }
+}

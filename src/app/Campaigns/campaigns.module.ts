@@ -7,6 +7,12 @@ import { CampaignFormComponent } from './campaign-form/campaign-form.component';
 import { CampaignRoutingModule } from './campaign-routing.module';
 import { SharedModule } from '../Shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { DropdownModule } from 'primeng/dropdown';
+import { ChipsModule } from 'primeng/chips';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -19,7 +25,13 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     CampaignRoutingModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FloatLabelModule,
+    DropdownModule,
+    InputTextareaModule,
+    ChipsModule,
+    InputTextModule
   ]
 })
 export class CampaignsModule { }

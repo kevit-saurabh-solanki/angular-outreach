@@ -1,0 +1,60 @@
+.dashboard-charts {
+  background-color: #F3F4F6; // light background
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  .title-box {
+    text-align: center;
+    margin-bottom: 20px;
+
+    .title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1E40AF;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+
+      &::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 3px;
+        background: #3B82F6;
+        margin: 8px auto 0;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  .graph-box {
+
+    .date-filters {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+
+      label {
+        display: flex;
+        flex-direction: column;
+        font-weight: 500;
+        color: #1E40AF;
+
+        input[type="date"] {
+          margin-top: 0.3rem;
+          padding: 0.4rem 0.6rem;
+          border: 1px solid #3B82F6;
+          border-radius: 0.4rem;
+          font-size: 0.95rem;
+
+          &:focus {
+            outline: none;
+            border-color: #2563EB;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+          }
+        }
+      }
+    }
+  }
+}

@@ -8,7 +8,7 @@
         <p class="detail title">Title: {{message.title}}</p>
         <p class="detail messageType">Type: {{message.messageType}}</p>
         <div *ngIf="message.imagePath">
-            <p class="detail imagePath">Image</p>
+            <p class="detail imagePath">Image:</p>
             <img [src]="message.imagePath" alt="error loading thumbnail" />
         </div>
         <p class="detail content">Content: {{message.content}}</p>

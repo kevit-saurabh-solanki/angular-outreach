@@ -52,4 +52,10 @@ export class CampaignService {
       })
     )
   }
+
+  launchCampaign(campaignId: string) {
+    return this.http.post(`${this.baseUrl}/${campaignId}/launch`, {}).pipe(
+      catchError(err => throwError(() => err))
+    );
+  }
 }

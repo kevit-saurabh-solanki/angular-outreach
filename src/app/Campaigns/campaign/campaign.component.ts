@@ -12,7 +12,7 @@ export class CampaignComponent {
   @Input() campaign!: CampaignInterface;
   userRole: string = '';
 
-  constructor(private campaignService: CampaignService, private router: Router) {}
+  constructor(private campaignService: CampaignService, private router: Router) { }
 
   ngOnInit() {
     const user = localStorage.getItem('user');
@@ -23,7 +23,7 @@ export class CampaignComponent {
   }
 
   deleteCampaign(campaignId: string) {
-    const confirmDelete = window.confirm('Are you sure you want to delete this contact?');
+    const confirmDelete = window.confirm('Are you sure you want to delete this campaign?');
     if (!confirmDelete) return;
 
     this.campaignService.deleteCampaign(campaignId).subscribe({
@@ -35,5 +35,20 @@ export class CampaignComponent {
         console.error('Error deleting campaign:', err);
       }
     });
+  }
+
+  launchCampaign(campaignId: string) {
+    const confirmLaunch = window.confirm('Are you sure you want to launch campaign cannot edit it later');
+    if (!confirmLaunch) return;
+
+    this.campaignService.launchCampaign(campaignId).subscribe({
+      next: (res) => {
+        console.log(res);
+        console.log('campaign launched');
+      },
+      error: (err) => {
+        console.error('Error launching campaign:', err);
+      }
+    })
   }
 }

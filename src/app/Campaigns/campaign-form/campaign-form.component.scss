@@ -1,0 +1,99 @@
+form {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #F3F4F6;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.7rem; // uniform spacing
+
+  .card {
+    flex-direction: column;
+    align-items: stretch;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    min-height: 2rem;
+
+    p-floatLabel {
+      width: 100%;
+
+      ::ng-deep .p-dropdown,
+      ::ng-deep .p-chips {
+        width: 100% !important;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        font-size: 1rem;
+
+        &:focus {
+          border-color: #2563EB;
+          box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+        }
+      }
+
+      label {
+        color: #1E40AF;
+        font-weight: 500;
+      }
+    }
+
+    .validation-wrapper {
+      min-height: 1.2rem;
+
+      .validation-message {
+        min-height: 1.2rem;
+        margin-top: 0.25rem;
+        font-size: 0.85rem;
+        color: #DC2626; // red for errors
+      }
+    }
+  }
+
+  button {
+    padding: 0.7rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  button[type="submit"] {
+    background: #2563EB;
+    color: white;
+
+    &:hover:enabled {
+      background: #1E40AF;
+    }
+
+    &:disabled {
+      background: #9CA3AF;
+      cursor: not-allowed;
+    }
+  }
+
+  button[type="button"] {
+    background: #3B82F6;
+    color: white;
+    margin-top: 0.5rem;
+
+    &:hover {
+      background: #2563EB;
+    }
+  }
+
+  .success-message {
+    margin: 0 auto;
+    color: #1E40AF;
+    font-weight: 500;
+  }
+}
