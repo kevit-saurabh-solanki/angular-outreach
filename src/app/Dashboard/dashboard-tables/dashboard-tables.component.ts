@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CampaignInterface } from '../../Campaigns/campaign.interface';
 
 @Component({
   selector: 'app-dashboard-tables',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './dashboard-tables.component.scss'
 })
 export class DashboardTablesComponent {
-
+  @Input() campaigns!: CampaignInterface[];
+  @Input() topTags: any;
 }
