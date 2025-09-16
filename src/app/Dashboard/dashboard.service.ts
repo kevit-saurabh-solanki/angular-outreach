@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
 
-interface CampaignPerMessageTypeData {
+interface graphDatatype {
   labels: string[];
   datasets: {
     label: string;
@@ -33,13 +33,26 @@ export class DashboardService {
   }
 
   getCampaignsPerMessageType(start: string, end: string) {
-    return this.http.get<CampaignPerMessageTypeData>(`${this.baseUrl}/campaign-per-message-type`,
+    return this.http.get<graphDatatype>(`${this.baseUrl}/campaign-per-message-type`,
       {
         params: { start, end }
       }
     ).pipe(
       catchError((err) => {
         console.log('Error fetching campaign count:', err);
+        return throwError(() => err);
+      })
+    )
+  }
+
+  getContactsReached(start: string, end: string) {
+    return this.http.get<graphDatatype>(`${this.baseUrl}/contacts-reached-per-day`,
+      {
+        params: { start, end }
+      }
+    ).pipe(
+      catchError((err) => {
+        console.log('Error fetching contacts count:', err);
         return throwError(() => err);
       })
     )
