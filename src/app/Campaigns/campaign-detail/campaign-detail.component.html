@@ -5,6 +5,7 @@
     </div>
     <div class="detail-box">
         <p class="detail _id">Campaign Id: {{campaign._id}}</p>
+        <p class="detail _id">Campaign status: {{campaign.status}}</p>
         <p class="detail targetTags">Target Tags: <span *ngFor="let tag of campaign.targetTags" class="badge">{{tag}}</span></p>
         <p class="detail workspaceId">Belongs to Workspace: {{campaign.workspaceId.name}}</p>
         <p class="detail CreatedBy">Created By: {{campaign.createdBy.email}}</p>
