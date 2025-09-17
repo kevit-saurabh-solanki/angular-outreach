@@ -22,7 +22,7 @@ export class ContactFormComponent {
     this.contactForm = this.formBuilder.group({
       name: ['', Validators.required],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\d+$/), Validators.minLength(10), Validators.maxLength(15)]],
-      tags: ['', Validators.required]
+      tags: [[], Validators.required]
     });
 
     const contactId = this.routeParam.snapshot.paramMap.get('id');
@@ -32,7 +32,7 @@ export class ContactFormComponent {
         this.contactForm.patchValue({
           name: contact.name,
           phoneNumber: contact.phoneNumber,
-          tags: contact.tags?.join(', ')
+          tags: contact.tags
         });
       });
     }
@@ -67,7 +67,7 @@ export class ContactFormComponent {
     const contactToAdd: SendContactInterface = {
       name: formValue.name,
       phoneNumber: Number(formValue.phoneNumber),
-      tags: formValue.tags.split(',').map((tag: string) => tag.trim()),
+      tags: formValue.tags,
       workspaceId: wokspaceId || ''
     };
 
@@ -93,7 +93,7 @@ export class ContactFormComponent {
     const contactToEdit: SendContactInterface = {
       name: formValue.name,
       phoneNumber: Number(formValue.phoneNumber),
-      tags: formValue.tags.split(',').map((tag: string) => tag.trim()),
+      tags: formValue.tags,
       workspaceId: workspaceId || ''
     };
 

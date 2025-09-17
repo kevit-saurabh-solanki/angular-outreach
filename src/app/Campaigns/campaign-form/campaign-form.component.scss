@@ -1,5 +1,5 @@
 form {
-  max-width: 400px;
+  max-width: 500px;
   margin: 2rem auto;
   padding: 1.5rem;
   background: #F3F4F6;
@@ -57,6 +57,41 @@ form {
       }
     }
   }
+
+  .card-preview {
+    background-color: #F3F4F6; // light background
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin-top: 0;
+
+    h4 {
+      color: #1E40AF; // deep blue
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      margin-top: 0;
+    }
+
+    p {
+      font-size: 0.95rem;
+      margin: 0.25rem 0;
+
+      strong {
+        color: #2563EB; // accent blue
+      }
+    }
+
+    img {
+      display: block;
+      margin-top: 0.75rem;
+      border-radius: 8px;
+      border: 2px solid #3B82F6; // light border highlight
+      max-width: 100%;
+      width: 420px;
+      object-fit: cover;
+    }
+  }
+
 
   button {
     padding: 0.7rem;

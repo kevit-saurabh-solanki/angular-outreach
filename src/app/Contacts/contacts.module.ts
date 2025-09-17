@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FloatLabelModule } from "primeng/floatlabel";
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { ChipsModule } from 'primeng/chips';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
     HttpClientModule,
     FloatLabelModule,
     InputTextModule,
-    InputNumberModule
+    InputNumberModule,
+    ChipsModule
   ]
 })
 export class ContactsModule { }
