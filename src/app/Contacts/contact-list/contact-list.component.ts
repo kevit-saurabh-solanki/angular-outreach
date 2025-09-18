@@ -11,6 +11,7 @@ import { SharedService } from '../../Shared/shared.service';
 })
 export class ContactListComponent {
 
+
   contacts!: ContactInterface[];
   userRole: string = '';
 

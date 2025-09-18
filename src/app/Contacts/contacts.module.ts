@@ -15,6 +15,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ChipsModule } from 'primeng/chips';
 
 
+
 @NgModule({
   declarations: [
     ContactDetailsComponent,
@@ -32,7 +33,7 @@ import { ChipsModule } from 'primeng/chips';
     FloatLabelModule,
     InputTextModule,
     InputNumberModule,
-    ChipsModule
-  ]
+    ChipsModule,
+    HttpClientModule,
 })
 export class ContactsModule { }

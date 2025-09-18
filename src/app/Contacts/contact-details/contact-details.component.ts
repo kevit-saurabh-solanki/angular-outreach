@@ -18,6 +18,7 @@ export class ContactDetailsComponent {
     private router: Router
   ) { }
 
+
   ngOnInit(): void {
     // Get id from route param
     const id = this.route.snapshot.paramMap.get('id');
@@ -50,6 +51,7 @@ export class ContactDetailsComponent {
   redirectToEdit() {
     this.router.navigate(['contacts/edit', this.contact?._id]);
   }
+
 
   deleteContact(contactId: string) {
     const confirmDelete = window.confirm('Are you sure you want to delete this contact?');

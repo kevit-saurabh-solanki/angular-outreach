@@ -56,4 +56,5 @@ export class MenuBarComponent {
     this.sharedService.setWorkspace(newWorkspaceId);
   }
 
+
 }
