@@ -2,7 +2,7 @@
 <td class="row-item status">{{campaign.status}}</td>
 <td class="row-item tags"><span *ngFor="let tag of campaign.targetTags" class="badge">{{tag}}</span></td>
 <td class="row-item buttons">
-    <button class="editBtn"  *ngIf="userRole === 'editor'" [routerLink]="['edit', campaign._id]">Edit</button>
+    <button class="editBtn"  *ngIf="userRole === 'editor' && campaign.status !== 'success'" [routerLink]="['edit', campaign._id]">Edit</button>
     <button class="deleteBtn"  *ngIf="userRole === 'editor'" (click)="deleteCampaign(campaign._id)">Delete</button>
     <button class="launchBtn" (click)="launchCampaign(campaign._id)" *ngIf="campaign.status !== 'success'">Launch</button>
     <button class="copyBtn">Copy</button>

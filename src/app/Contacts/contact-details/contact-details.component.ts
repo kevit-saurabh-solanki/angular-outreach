@@ -25,7 +25,6 @@ export class ContactDetailsComponent {
     if (id) {
       this.contactService.getContactById(id).subscribe({
         next: (contact) => {
-          console.log(contact);
           this.contact = {
             ...contact,
           };

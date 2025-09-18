@@ -19,7 +19,7 @@ export class CampaignFormComponent {
   successMessage!: boolean;
   messageTypeOption: any;
   messages!: MessageInterface[];
-  selectedMessage?: MessageInterface;
+  selectedMessage: MessageInterface | null = null;
   messageType!: string;
 
   private messageService = inject(MessageService);
@@ -33,10 +33,9 @@ export class CampaignFormComponent {
     //initialize the form--------------------------------------------------------------------------
     this.campaignForm = this.formBuilder.group({
       name: ['', Validators.required],
-      messageId: ['', Validators.required],
+      description: [''],
       targetTags: [[], Validators.required],
-      content: ['', Validators.required],
-      imagePath: ['']
+      messageId: [null, Validators.required],
     });
 
     //get the message template in dropdown-------------------------------------------------------------
@@ -57,37 +56,25 @@ export class CampaignFormComponent {
       });
     });
 
-    //based on selected template patch content-------------------------------------------------------------
-    this.campaignForm.get('messageId')?.valueChanges.subscribe(selectedId => {
-      this.selectedMessage = this.messages.find(m => m._id === selectedId);
-      if (this.selectedMessage) {
-        this.messageType = this.selectedMessage.messageType;
-        this.campaignForm.patchValue({ content: this.selectedMessage.content });
-        if (this.selectedMessage.imagePath) {
-          this.campaignForm.patchValue({ imagePath: this.selectedMessage.imagePath });
-        }
-      }
-    });
-
-    //if campaign edit then patch existing values----------------------------------------------------
+    // if campaign edit then patch existing values ----------------------------------------------------
     const campaignId = this.route.snapshot.paramMap.get('id');
     if (campaignId) {
       this.campaignService.getCampaignById(campaignId).subscribe({
         next: (campaign) => {
-          this.campaign = (campaign as CampaignInterface);
+          this.campaign = campaign as CampaignInterface;
 
           this.campaignForm.patchValue({
             name: this.campaign.name,
-            messageId: this.campaign.messageId,
+            description: this.campaign.description,
             targetTags: this.campaign.targetTags,
-            content: this.campaign.content,
-            imagePath: this.campaign.imagePath
+            messageId: this.campaign.messageId
           });
         },
         error: (err) => console.error('Error loading campaign:', err)
       });
     }
   }
+
 
   get name() {
     return this.campaignForm.get('name');
@@ -101,36 +88,35 @@ export class CampaignFormComponent {
     return this.campaignForm.get('targetTags');
   }
 
-  get content() {
-    return this.campaignForm.get('content');
-  }
-
   goBack() {
     this.location.back();
   }
 
-  //edit campaign---------------------------------------------------------------------------------
+  onMessageTemplateChange(event: any) {
+    const selectedId = event.value;
+    this.selectedMessage = this.messages.find(m => m._id === selectedId) || null;
+  }
+
+  // edit campaign ---------------------------------------------------------------------------------
   editCampaign() {
     if (this.campaignForm.invalid || !this.campaign) return;
 
     const formValue = this.campaignForm.value;
-    const workspaceId = localStorage.getItem('workspaceId');
+    const workspaceId = localStorage.getItem('workspaceId') || '';
 
     const campaignToEdit: SendCampaignInterface = {
       name: formValue.name,
+      description: formValue.description,
       messageId: formValue.messageId,
-      content: formValue.content,
-      messageType: this.messageType,
-      ...(this.messageType === 'Text and Image' && formValue.imagePath ? { imagePath: formValue.imagePath } : {}),
       targetTags: formValue.targetTags,
-      workspaceId: workspaceId || ''
+      workspaceId
     };
 
     this.campaignService.editCampaign(campaignToEdit, this.campaign._id).subscribe({
       next: (result) => {
         this.campaignForm.reset();
         this.successMessage = true;
-        console.log('Campaign edited:', result);
+        console.log('Campaign edited');
       },
       error: (err) => {
         console.error('Error editing campaign:', err);
@@ -138,21 +124,20 @@ export class CampaignFormComponent {
     });
   }
 
-  //add campaign----------------------------------------------------
+
+  // add campaign ----------------------------------------------------
   addCampaign() {
     if (this.campaignForm.invalid) return;
 
     const formValue = this.campaignForm.value;
-    const workspaceId = localStorage.getItem('workspaceId');
+    const workspaceId = localStorage.getItem('workspaceId') || '';
 
     const campaignToAdd: SendCampaignInterface = {
       name: formValue.name,
+      description: formValue.description,
       messageId: formValue.messageId,
       targetTags: formValue.targetTags,
-      messageType: this.messageType,
-      content: formValue.content,
-      ...(this.messageType === 'Text and Image' && formValue.imagePath ? { imagePath: formValue.imagePath } : {}),
-      workspaceId: workspaceId || ''
+      workspaceId
     };
 
     this.campaignService.addCampaign(campaignToAdd).subscribe({
@@ -165,6 +150,7 @@ export class CampaignFormComponent {
       }
     });
   }
+
 
 
 }

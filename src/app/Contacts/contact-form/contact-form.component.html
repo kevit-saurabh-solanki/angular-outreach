@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    <div class="card flex justify-content-center">
+    <!-- <div class="card flex justify-content-center">
         <p-floatLabel>
             <input pInputText id="tags" formControlName="tags" />
             <label for="tags">Tags</label>
@@ -39,6 +39,21 @@
         <div class="validation-wrapper">
             <small class="validation-message" *ngIf="tags?.invalid && tags?.touched">
                 <span *ngIf="phoneNumber?.errors?.['required']">Tags is required.</span>
+            </small>
+        </div>
+    </div> -->
+
+    <div class="card p-fluid">
+        <p-floatLabel>
+            <p-chips id="tags" formControlName="tags" />
+            <label for="tags">Tags</label>
+        </p-floatLabel>
+
+        <div class="validation-wrapper">
+            <small class="validation-message" *ngIf="tags?.invalid && tags?.touched">
+                <span *ngIf="tags?.errors?.['required']">
+                    Enter at least one tag
+                </span>
             </small>
         </div>
     </div>

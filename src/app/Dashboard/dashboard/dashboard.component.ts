@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ChartData } from 'chart.js';
 import { DashboardService } from '../dashboard.service';
 import { CampaignInterface } from '../../Campaigns/campaign.interface';
+import { SharedService } from '../../Shared/shared.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +11,7 @@ import { CampaignInterface } from '../../Campaigns/campaign.interface';
 })
 export class DashboardComponent {
 
-  constructor(private dashboardService: DashboardService) { }
+  constructor(private dashboardService: DashboardService, private sharedService: SharedService) { }
 
   campaignsPerDay: ChartData<'bar'> = { labels: [], datasets: [] };
   messagesPerTypePerDay: ChartData<'bar'> = { labels: [], datasets: [] };
@@ -21,8 +22,12 @@ export class DashboardComponent {
   endDate!: string;
 
   ngOnInit(): void {
-    this.loadCharts(); // initial load
-    this.loadTables();
+    this.sharedService.workspaceId$.subscribe(id => {
+      if (!id) return;
+
+      this.loadCharts(); // initial load
+      this.loadTables();
+    })
   }
 
   loadCharts() {
@@ -34,7 +39,7 @@ export class DashboardComponent {
     this.dashboardService.getCampaignsPerDay(this.startDate, this.endDate).subscribe({
       next: (res) => {
         this.campaignsPerDay = {
-          labels: res.map(r => r.date), 
+          labels: res.map(r => r.date),
           datasets: [{ data: res.map(r => r.count), label: 'Campaigns' }]
         }
       },
@@ -45,6 +50,7 @@ export class DashboardComponent {
 
     this.dashboardService.getCampaignsPerMessageType(this.startDate, this.endDate).subscribe({
       next: (res) => {
+        console.log(res);
         this.messagesPerTypePerDay = {
           labels: res.labels,
           datasets: res.datasets.map(ds => ({
@@ -77,7 +83,6 @@ export class DashboardComponent {
   loadTables() {
     this.dashboardService.getRecentCampaigns().subscribe({
       next: (res) => {
-        console.log(res);
         this.recentCampaigns = (res as CampaignInterface[]);
       },
       error: (err) => {

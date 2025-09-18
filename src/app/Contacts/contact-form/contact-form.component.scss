@@ -21,6 +21,30 @@ form {
         p-floatLabel {
             width: 100%;
 
+            ::ng-deep .p-chips {
+                width: 100%;
+                padding: 0;
+
+                .p-chips-multiple-container {
+                    border: 1px solid #d1d5db;
+                    border-radius: 6px;
+                    font-size: 1rem;
+
+                    &:focus-within {
+                        border-color: #2563EB;
+                        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+                    }
+
+                    input {
+                        border: none;
+                        outline: none;
+                        padding: 0.25rem;
+                        font-size: 1rem;
+                        width: 100%;
+                    }
+                }
+            }
+
             input {
                 width: 100%;
                 padding: 0.75rem;

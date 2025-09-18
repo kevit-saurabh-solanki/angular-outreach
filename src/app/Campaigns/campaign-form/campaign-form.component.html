@@ -1,42 +1,46 @@
 <form [formGroup]="campaignForm" (ngSubmit)="campaign ? editCampaign() : addCampaign()">
 
+    <!-- Campaign Name -->
     <div class="card flex justify-content-center">
         <p-floatLabel>
             <input pInputText id="name" formControlName="name" />
             <label for="name">Name</label>
         </p-floatLabel>
-
         <div class="validation-wrapper">
             <small class="validation-message" *ngIf="name?.invalid && name?.touched">
-                <span *ngIf="name?.errors?.['required']">
-                    Name is required
-                </span>
+                <span *ngIf="name?.errors?.['required']">Name is required</span>
             </small>
         </div>
     </div>
 
+    <!-- Campaign Description -->
+    <div class="card flex justify-content-center">
+        <p-floatLabel>
+            <textarea id="description" rows="3" pInputTextarea formControlName="description"></textarea>
+            <label for="description">Description</label>
+        </p-floatLabel>
+    </div>
+
+    <!-- Target Tags -->
     <div class="card p-fluid">
         <p-floatLabel>
             <p-chips id="targetTags" formControlName="targetTags" />
             <label for="targetTags">Tags to target</label>
         </p-floatLabel>
-
         <div class="validation-wrapper">
             <small class="validation-message" *ngIf="targetTags?.invalid && targetTags?.touched">
-                <span *ngIf="targetTags?.errors?.['required']">
-                    Enter at least one tag
-                </span>
+                <span *ngIf="targetTags?.errors?.['required']">Enter at least one tag</span>
             </small>
         </div>
     </div>
 
+    <!-- Select Message Template -->
     <div class="card flex justify-content-center">
         <p-floatLabel>
-            <p-dropdown class="dropdown" [options]="messageTypeOption" optionLabel="label" optionValue="value"
-                inputId="float-label" inputId="float-label" formControlName="messageId" />
-            <label for="float-label">Select a Message Template</label>
+            <p-dropdown class="dropdown" [options]="messageTypeOption" inputId="messageId" formControlName="messageId"  (onChange)="onMessageTemplateChange($event)">
+            </p-dropdown>
+            <label for="messageId">Select a Message Template</label>
         </p-floatLabel>
-
         <div class="validation-wrapper">
             <small class="validation-message" *ngIf="messageId?.invalid && messageId?.touched">
                 <span *ngIf="messageId?.errors?.['required']">Message Template is required.</span>
@@ -44,30 +48,21 @@
         </div>
     </div>
 
-    <div class="card flex justify-content-center">
-        <p-floatLabel>
-            <textarea id="float-input" rows="5" cols="30" pInputTextarea formControlName="content"></textarea>
-            <label for="float-input">Content</label>
-        </p-floatLabel>
-
-        <div class="validation-wrapper">
-            <small class="validation-message" *ngIf="content?.invalid && content?.touched">
-                <span *ngIf="content?.errors?.['required']">Content is required.</span>
-            </small>
+    <div class="card-preview mt-3 p-3" *ngIf="selectedMessage">
+        <h4>{{ selectedMessage.title }}</h4>
+        <p><strong>Type:</strong> {{ selectedMessage.messageType }}</p>
+        <p><strong>Content:</strong> {{ selectedMessage.content }}</p>
+        <div *ngIf="selectedMessage.imagePath">
+            <img [src]="selectedMessage.imagePath" alt="Template Image" width="200" />
         </div>
     </div>
 
-    <div class="card flex justify-content-center" *ngIf="selectedMessage?.imagePath">
-        <p-floatLabel>
-            <input pInputText id="url" formControlName="imagePath" />
-            <label for="url">Image URL</label>
-        </p-floatLabel>
-    </div>
-
+    <!-- Submit / Back -->
     <button type="submit" [disabled]="campaignForm.invalid">
         {{ campaign ? 'Edit' : 'Add' }}
     </button>
     <button type="button" (click)="goBack()">Back</button>
-    <p class="success-message" *ngIf="!campaign && successMessage">Campaign Added SuccessFully</p>
-    <p class="success-message" *ngIf="campaign && successMessage">Campaign Edited SuccessFully</p>
+
+    <p class="success-message" *ngIf="!campaign && successMessage">Campaign Added Successfully</p>
+    <p class="success-message" *ngIf="campaign && successMessage">Campaign Edited Successfully</p>
 </form>

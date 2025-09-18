@@ -18,7 +18,7 @@ export class AuthService {
 
 
   login(body: loginInterface) {
-    return this.http.post<{ token: string }>(this.baseUrl, body).pipe(
+    return this.http.post<{ token: string }>(`${this.baseUrl}/users`, body).pipe(
       switchMap((res) => {
         const token = res.token;
         localStorage.setItem('token', token);
