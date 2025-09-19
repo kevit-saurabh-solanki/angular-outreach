@@ -26,12 +26,17 @@ export class ContactListComponent {
       const parsedUser = JSON.parse(user);
       this.userRole = parsedUser.role;
     }
+
+    this.sharedService.workspaceId$.subscribe(id => {
+      if (!id) return;
+      this.page = 1;
+    })
   }
 
   loadContacts() {
     this.sharedService.workspaceId$.subscribe(id => {
       if (!id) return
-
+      
       this.contactService.getContactsByWorkspaceId(id, this.page).subscribe({
         next: (response) => {
           this.contacts = response.data;
@@ -42,8 +47,9 @@ export class ContactListComponent {
         }
       })
     })
-
   }
+
+  
 
   nextPage() {
     if (this.page < this.totalPages) {
