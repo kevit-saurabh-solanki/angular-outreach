@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, retry, throwError } from 'rxjs';
-import { SendCampaignInterface } from './campaign.interface';
+import { PaginatedCampaignsInterface, SendCampaignInterface } from './campaign.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +34,10 @@ export class CampaignService {
 
   editCampaign(campaign: SendCampaignInterface, campaignId: string) {
     return this.http.put(`${this.baseUrl}/${campaignId}`, campaign).pipe(
-      catchError(err => throwError(() => err))
+      catchError(err => {
+        console.error(err);
+        return throwError(() => err);
+      }) 
     );
   }
 
@@ -44,8 +47,8 @@ export class CampaignService {
     );
   }
 
-  getCampaignsByWorkspaceId(workspaceId: string) {
-    return this.http.get(`${this.baseUrl}/workspace/${workspaceId}`).pipe(
+  getCampaignsByWorkspaceId(workspaceId: string, page: number, limit: number = 10) {
+    return this.http.get<PaginatedCampaignsInterface>(`${this.baseUrl}/workspace/${workspaceId}?page=${page}&limit=${limit}`).pipe(
       catchError(err => {
         console.error('error fetching messages:', err);
         return throwError(() => err);
@@ -57,5 +60,14 @@ export class CampaignService {
     return this.http.post(`${this.baseUrl}/${campaignId}/launch`, {}).pipe(
       catchError(err => throwError(() => err))
     );
+  }
+
+  copyCampaign(campaignId: string) {
+    return this.http.post(`${this.baseUrl}/copy/${campaignId}`, {}).pipe(
+      catchError(err => {
+        console.log(err);
+        return throwError(() => err);
+      })
+    )
   }
 }

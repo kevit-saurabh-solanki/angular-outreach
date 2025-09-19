@@ -32,3 +32,8 @@ export interface PaginatedContactsResponse {
   page: number;
   totalPages: number;
 }
+
+export interface topTagInterface {
+    tag: string;
+    count: number;
+}

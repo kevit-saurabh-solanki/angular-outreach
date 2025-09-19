@@ -6,7 +6,8 @@
     <div class="search-add-box">
         <input type="text" placeholder="Search Campaign">
         <button type="button" class="search">Search</button>
-        <button type=" button" class="add" [routerLink]="['/campaigns/add']" *ngIf="userRole === 'editor'">Add Campaign</button>
+        <button type=" button" class="add" [routerLink]="['/campaigns/add']" *ngIf="userRole === 'editor'">Add
+            Campaign</button>
     </div>
     <div class="table-box">
         <table>
@@ -22,5 +23,11 @@
                 <tr app-campaign *ngFor="let campaign of campaigns" [campaign]="campaign"></tr>
             </tbody>
         </table>
+    </div>
+
+    <div class="pagination-box">
+        <button (click)="prevPage()" [disabled]="page === 1">Previous</button>
+        <span>Page {{page}} of {{totalPages}}</span>
+        <button (click)="nextPage()" [disabled]="page === totalPages">Next</button>
     </div>
 </div>

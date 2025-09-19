@@ -43,11 +43,24 @@ export class CampaignComponent {
 
     this.campaignService.launchCampaign(campaignId).subscribe({
       next: (res) => {
-        console.log(res);
         console.log('campaign launched');
       },
       error: (err) => {
         console.error('Error launching campaign:', err);
+      }
+    })
+  }
+
+  copyCampaign(campaignId: string) {
+    const confirmCopy = window.confirm('Do you want to copy this campaign?');
+    if (!confirmCopy) return;
+
+    this.campaignService.copyCampaign(campaignId).subscribe({
+      next: (res) => {
+        console.log('campaign Copied');
+      },
+      error: (err) => {
+        console.error('Error Copying campaign:', err);
       }
     })
   }

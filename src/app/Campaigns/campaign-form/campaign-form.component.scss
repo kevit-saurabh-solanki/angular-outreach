@@ -126,7 +126,8 @@ form {
     }
   }
 
-  .success-message {
+  .success-message,
+  .error-message {
     margin: 0 auto;
     color: #1E40AF;
     font-weight: 500;

@@ -20,7 +20,7 @@ export class ContactListComponent {
 
   ngOnInit() {
     this.loadContacts();
-    
+
     const user = localStorage.getItem('user');
     if (user) {
       const parsedUser = JSON.parse(user);
@@ -36,20 +36,20 @@ export class ContactListComponent {
   loadContacts() {
     this.sharedService.workspaceId$.subscribe(id => {
       if (!id) return
-      
+
       this.contactService.getContactsByWorkspaceId(id, this.page).subscribe({
         next: (response) => {
           this.contacts = response.data;
-          this.totalPages = response.totalPages;
+          response.totalPages === 0 ? this.totalPages = 1 : this.totalPages = response.totalPages;
         },
         error: (err) => {
-          console.log(err);
+          console.error(err);
         }
       })
     })
   }
 
-  
+
 
   nextPage() {
     if (this.page < this.totalPages) {
