@@ -35,5 +35,6 @@ import { ChipsModule } from 'primeng/chips';
     InputNumberModule,
     ChipsModule,
     HttpClientModule,
+  ]
 })
 export class ContactsModule { }

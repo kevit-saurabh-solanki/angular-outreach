@@ -11,31 +11,57 @@ import { SharedService } from '../../Shared/shared.service';
 })
 export class ContactListComponent {
 
-
+  page: number = 1;
+  totalPages: number = 1;
   contacts!: ContactInterface[];
   userRole: string = '';
 
   constructor(private contactService: ContactsService, private sharedService: SharedService) { }
 
   ngOnInit() {
+    this.loadContacts();
+    
+    const user = localStorage.getItem('user');
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      this.userRole = parsedUser.role;
+    }
+
+    this.sharedService.workspaceId$.subscribe(id => {
+      if (!id) return;
+      this.page = 1;
+    })
+  }
+
+  loadContacts() {
     this.sharedService.workspaceId$.subscribe(id => {
       if (!id) return
-
-      this.contactService.getContactsByWorkspaceId(id).subscribe({
+      
+      this.contactService.getContactsByWorkspaceId(id, this.page).subscribe({
         next: (response) => {
-          this.contacts = response as ContactInterface[];
-          return response;
+          this.contacts = response.data;
+          this.totalPages = response.totalPages;
         },
         error: (err) => {
           console.log(err);
         }
       })
     })
+  }
 
-    const user = localStorage.getItem('user');
-    if (user) {
-      const parsedUser = JSON.parse(user);
-      this.userRole = parsedUser.role;
+  
+
+  nextPage() {
+    if (this.page < this.totalPages) {
+      this.page++;
+      this.loadContacts();
+    }
+  }
+
+  prevPage() {
+    if (this.page > 1) {
+      this.page--;
+      this.loadContacts();
     }
   }
 

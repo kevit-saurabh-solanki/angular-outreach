@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, retry, throwError } from 'rxjs';
-import { ContactInterface, SendContactInterface } from './contact.interface';
+import { ContactInterface, PaginatedContactsResponse, SendContactInterface } from './contact.interface';
 
 
 @Injectable({
@@ -56,8 +56,8 @@ export class ContactsService {
     );
   }
 
-  getContactsByWorkspaceId(workspaceId: string) {
-    return this.http.get(`${this.baseUrl}/workspace/${workspaceId}`).pipe(
+  getContactsByWorkspaceId(workspaceId: string, page: number, limit: number = 10) {
+    return this.http.get<PaginatedContactsResponse>(`${this.baseUrl}/workspace/${workspaceId}?page=${page}&limit=${limit}`).pipe(
       catchError(err => {
         console.error('error fetching contacts:', err);
         return throwError(() => err);

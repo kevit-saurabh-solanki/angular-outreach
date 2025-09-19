@@ -25,3 +25,10 @@ export interface SendContactInterface {
     tags: string[];
     workspaceId: string;
 }
+
+export interface PaginatedContactsResponse {
+  data: ContactInterface[];
+  total: number;
+  page: number;
+  totalPages: number;
+}

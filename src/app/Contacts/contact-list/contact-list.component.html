@@ -3,11 +3,15 @@
     <div class="title-box">
         <h1 class="title">Contacts</h1>
     </div>
+
     <div class="search-add-box">
         <input type="text" placeholder="Search Contact">
         <button type="button" class="search">Search</button>
-        <button type=" button" class="add" [routerLink]="['/contacts/add']" *ngIf="userRole === 'editor'">Add Contact</button>
+        <button type="button" class="add" [routerLink]="['/contacts/add']" *ngIf="userRole === 'editor'">Add
+            Contact</button>
     </div>
+
+    <!-- Table + Pagination Wrapper -->
     <div class="table-box">
         <table>
             <thead>
@@ -22,5 +26,11 @@
                 <tr app-contact *ngFor="let contact of contacts" [contact]="contact"></tr>
             </tbody>
         </table>
+    </div>
+
+    <div class="pagination-box">
+        <button (click)="prevPage()" [disabled]="page === 1">Previous</button>
+        <span>Page {{page}} of {{totalPages}}</span>
+        <button (click)="nextPage()" [disabled]="page === totalPages">Next</button>
     </div>
 </div>
