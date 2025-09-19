@@ -51,4 +51,18 @@ export class CampaignComponent {
       }
     })
   }
+
+  copyCampaign(campaignId: string) {
+    const confirmCopy = window.confirm('Do you want to copy this campaign?');
+    if (!confirmCopy) return;
+
+    this.campaignService.copyCampaign(campaignId).subscribe({
+      next: (res) => {
+        console.log('campaign Copied');
+      },
+      error: (err) => {
+        console.error('Error Copying campaign:', err);
+      }
+    })
+  }
 }

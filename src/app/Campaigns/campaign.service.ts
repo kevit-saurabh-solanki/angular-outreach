@@ -61,4 +61,13 @@ export class CampaignService {
       catchError(err => throwError(() => err))
     );
   }
+
+  copyCampaign(campaignId: string) {
+    return this.http.post(`${this.baseUrl}/copy/${campaignId}`, {}).pipe(
+      catchError(err => {
+        console.log(err);
+        return throwError(() => err);
+      })
+    )
+  }
 }
