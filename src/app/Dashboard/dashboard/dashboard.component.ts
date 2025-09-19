@@ -3,6 +3,7 @@ import { ChartData } from 'chart.js';
 import { DashboardService } from '../dashboard.service';
 import { CampaignInterface } from '../../Campaigns/campaign.interface';
 import { SharedService } from '../../Shared/shared.service';
+import { topTagInterface } from '../../Contacts/contact.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,6 +18,7 @@ export class DashboardComponent {
   messagesPerTypePerDay: ChartData<'bar'> = { labels: [], datasets: [] };
   contactsReachedPerDay: ChartData<'bar'> = { labels: [], datasets: [] };
   recentCampaigns!: CampaignInterface[];
+  topTags!: topTagInterface[]
 
   startDate!: string;
   endDate!: string;
@@ -50,7 +52,6 @@ export class DashboardComponent {
 
     this.dashboardService.getCampaignsPerMessageType(this.startDate, this.endDate).subscribe({
       next: (res) => {
-        console.log(res);
         this.messagesPerTypePerDay = {
           labels: res.labels,
           datasets: res.datasets.map(ds => ({
@@ -84,6 +85,15 @@ export class DashboardComponent {
     this.dashboardService.getRecentCampaigns().subscribe({
       next: (res) => {
         this.recentCampaigns = (res as CampaignInterface[]);
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
+
+    this.dashboardService.getTopTags().subscribe({
+      next: (res) => {
+        this.topTags = (res as topTagInterface[]);
       },
       error: (err) => {
         console.error(err);

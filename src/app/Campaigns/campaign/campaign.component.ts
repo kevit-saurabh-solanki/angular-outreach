@@ -43,7 +43,6 @@ export class CampaignComponent {
 
     this.campaignService.launchCampaign(campaignId).subscribe({
       next: (res) => {
-        console.log(res);
         console.log('campaign launched');
       },
       error: (err) => {

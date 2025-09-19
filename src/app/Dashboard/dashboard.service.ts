@@ -75,4 +75,18 @@ export class DashboardService {
     )
   }
 
+  getTopTags() {
+    const workspaceId = localStorage.getItem('workspaceId') || '';
+    return this.http.get(`http://localhost:3000/contacts/toptags`,
+      {
+        params: { workspaceId: workspaceId }
+      }
+    ).pipe(
+      catchError(err => {
+        console.log(err);
+        return throwError(() => err);
+      })
+    )
+  }
+
 }

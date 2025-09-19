@@ -7,6 +7,6 @@
     <button class="deleteBtn" *ngIf="userRole === 'editor'" (click)="deleteCampaign(campaign._id)">Delete</button>
     <button class="launchBtn" (click)="launchCampaign(campaign._id)"
         *ngIf="campaign.status !== 'success'">Launch</button>
-    <button class="copyBtn" (click)="copyCampaign(campaign._id)" *ngIf="userRole === 'editor'">Copy</button>
+    <button class="copyBtn" (click)="copyCampaign(campaign._id)" *ngIf="userRole === 'editor' && campaign.status !== 'success'">Copy</button>
     <button class="ViewBtn" [routerLink]="['/campaigns', campaign._id]">View</button>
 </td>
