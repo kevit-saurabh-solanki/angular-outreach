@@ -34,7 +34,10 @@ export class CampaignService {
 
   editCampaign(campaign: SendCampaignInterface, campaignId: string) {
     return this.http.put(`${this.baseUrl}/${campaignId}`, campaign).pipe(
-      catchError(err => throwError(() => err))
+      catchError(err => {
+        console.error(err);
+        return throwError(() => err);
+      }) 
     );
   }
 

@@ -21,6 +21,7 @@ export class CampaignFormComponent {
   messages!: MessageInterface[];
   selectedMessage: MessageInterface | null = null;
   messageType!: string;
+  errorMessage: string | null = null;
 
   private messageService = inject(MessageService);
   private sharedService = inject(SharedService);
@@ -116,10 +117,9 @@ export class CampaignFormComponent {
       next: (result) => {
         this.campaignForm.reset();
         this.successMessage = true;
-        console.log('Campaign edited');
       },
       error: (err) => {
-        console.error('Error editing campaign:', err);
+        this.errorMessage = err.error.message;
       }
     });
   }
@@ -146,7 +146,7 @@ export class CampaignFormComponent {
         this.successMessage = true;
       },
       error: (err) => {
-        console.error('Error adding campaign:', err);
+        this.errorMessage = err.error.message;
       }
     });
   }

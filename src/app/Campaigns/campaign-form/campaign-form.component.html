@@ -65,4 +65,5 @@
 
     <p class="success-message" *ngIf="!campaign && successMessage">Campaign Added Successfully</p>
     <p class="success-message" *ngIf="campaign && successMessage">Campaign Edited Successfully</p>
+    <p class="error-message" *ngIf="errorMessage">{{errorMessage}}</p>
 </form>
