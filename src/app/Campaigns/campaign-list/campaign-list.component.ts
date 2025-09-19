@@ -11,29 +11,53 @@ import { CampaignService } from '../campaign.service';
 export class CampaignListComponent {
   userRole: string = '';
   campaigns!: CampaignInterface[];
+  page: number = 1;
+  totalPages: number = 1;
 
-  constructor(private sharedService: SharedService, private campaignService: CampaignService) {}
+  constructor(private sharedService: SharedService, private campaignService: CampaignService) { }
 
   ngOnInit() {
-    this.sharedService.workspaceId$.subscribe(id => {
-      if (!id) return
-
-      this.campaignService.getCampaignsByWorkspaceId(id).subscribe({
-        next: (response) => {
-          this.campaigns = response as CampaignInterface[];
-          console.log('campaign fetched');
-          return response;
-        },
-        error: (err) => {
-          console.log(err);
-        }
-      })
-    })
+    this.loadCampaigns();
 
     const user = localStorage.getItem('user');
     if (user) {
       const parsedUser = JSON.parse(user);
       this.userRole = parsedUser.role;
+    }
+
+    this.sharedService.workspaceId$.subscribe(id => {
+      if (!id) return;
+      this.page = 1;
+    })
+  }
+
+  loadCampaigns() {
+    this.sharedService.workspaceId$.subscribe(id => {
+      if (!id) return
+
+      this.campaignService.getCampaignsByWorkspaceId(id, this.page).subscribe({
+        next: (response) => {
+          this.campaigns = response.data;
+          response.totalPages === 0 ? this.totalPages = 1 : this.totalPages = response.totalPages;
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      })
+    })
+  }
+
+  nextPage() {
+    if (this.page < this.totalPages) {
+      this.page++;
+      this.loadCampaigns();
+    }
+  }
+
+  prevPage() {
+    if (this.page > 1) {
+      this.page--;
+      this.loadCampaigns();
     }
   }
 }

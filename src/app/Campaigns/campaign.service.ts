@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, retry, throwError } from 'rxjs';
-import { SendCampaignInterface } from './campaign.interface';
+import { PaginatedCampaignsInterface, SendCampaignInterface } from './campaign.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -44,8 +44,8 @@ export class CampaignService {
     );
   }
 
-  getCampaignsByWorkspaceId(workspaceId: string) {
-    return this.http.get(`${this.baseUrl}/workspace/${workspaceId}`).pipe(
+  getCampaignsByWorkspaceId(workspaceId: string, page: number, limit: number = 10) {
+    return this.http.get<PaginatedCampaignsInterface>(`${this.baseUrl}/workspace/${workspaceId}?page=${page}&limit=${limit}`).pipe(
       catchError(err => {
         console.error('error fetching messages:', err);
         return throwError(() => err);

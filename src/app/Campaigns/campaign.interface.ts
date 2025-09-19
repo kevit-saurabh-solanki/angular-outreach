@@ -32,3 +32,10 @@ export interface SendCampaignInterface {
     description: string;
     workspaceId: string;
 }
+
+export interface PaginatedCampaignsInterface {
+    data: CampaignInterface[];
+    page: number;
+    total: number;
+    totalPages: number;
+}
