@@ -13,27 +13,24 @@
 
     <!-- Table + Pagination Wrapper -->
     <div class="table-box">
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Contact</th>
-                        <th>Tags</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr app-contact *ngFor="let contact of contacts" [contact]="contact"></tr>
-                </tbody>
-            </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Tags</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr app-contact *ngFor="let contact of contacts" [contact]="contact"></tr>
+            </tbody>
+        </table>
+    </div>
 
-            <!-- Pagination buttons -->
-            <div class="pagination-box">
-                <button (click)="prevPage()" [disabled]="page === 1">Previous</button>
-                <span>Page {{page}} of {{totalPages}}</span>    
-                <button (click)="nextPage()" [disabled]="page === totalPages">Next</button>
-            </div>
-        </div>
+    <div class="pagination-box">
+        <button (click)="prevPage()" [disabled]="page === 1">Previous</button>
+        <span>Page {{page}} of {{totalPages}}</span>
+        <button (click)="nextPage()" [disabled]="page === totalPages">Next</button>
     </div>
 </div>
