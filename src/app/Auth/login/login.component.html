@@ -23,7 +23,7 @@
 
             <div class="card flex justify-content-center password-card">
                 <p-floatLabel>
-                    <input pInputText id="password" formControlName="password" />
+                    <input type="password" pInputText id="password" formControlName="password" />
                     <label for="password">Passsword</label>
                 </p-floatLabel>
                 <small *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"

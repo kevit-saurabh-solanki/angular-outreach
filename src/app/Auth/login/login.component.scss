@@ -10,7 +10,7 @@
   .title {
     font-size: 2.2rem;
     font-weight: bold;
-    color: #4C1D95; // primary deep purple
+    color: #1E40AF; // primary deep blue
     margin-bottom: 2rem;
     letter-spacing: 1px;
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
@@ -31,7 +31,7 @@
       margin-bottom: 2.5rem;
       font-weight: 500;
       text-align: center;
-      color: #6D28D9; // secondary purple
+      color: #3B82F6; // secondary blue
     }
 
     .card {
@@ -39,16 +39,15 @@
       border-radius: 0.5rem;
       margin-top: 1rem;
       padding: 0.5rem;
-      // min-height: 50px;
       height: 4.8rem;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
 
       .validation-message {
-        min-height: 1.2rem; // reserve space even when empty
-        color: #dc2626; // red error
+        min-height: 1.2rem;
+        color: #dc2626; // red error stays same
         font-size: 0.85rem;
         line-height: 1.2rem;
-        display: block; // ensures it’s visible
+        display: block;
       }
     }
 
@@ -66,33 +65,31 @@
       transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 
       &:focus {
-        border-color: #3B82F6; // accent blue
-        box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+        border-color: #2563EB; // accent blue
+        box-shadow: 0 0 8px rgba(37, 99, 235, 0.4);
         background-color: #EFF6FF; // very light blue
       }
 
       &:hover {
         transform: translateY(-0.5px);
-        box-shadow: 0 6px 15px rgba(109, 40, 217, 0.3);
+        box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
       }
     }
 
     label {
-      color: #4C1D95;
+      color: #1E40AF; // deep blue for labels
       font-weight: 500;
     }
 
     .action-box {
       min-height: 1.2rem;
-      // height: 5rem;
       text-align: center;
       margin-top: 0.4rem;
 
       .invalid-credits {
         display: block;
         min-height: 1.2rem;
-        margin-top: 0rem;
-        margin-bottom: 0rem;
+        margin: 0;
         color: #E74C3C;
         font-size: 0.9rem;
         text-align: center;
@@ -103,7 +100,7 @@
     #submit {
       width: 100%;
       padding: 0.9rem;
-      background: linear-gradient(135deg, #4C1D95, #6D28D9);
+      background: linear-gradient(135deg, #1E40AF, #3B82F6); // deep → bright blue
       border: none;
       border-radius: 0.6rem;
       font-size: 1rem;
@@ -115,7 +112,7 @@
 
       &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 15px rgba(109, 40, 217, 0.3);
+        box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
       }
 
       &:active {
@@ -124,6 +121,7 @@
     }
   }
 }
+
 
 /* Animations */
 @keyframes fadeUp {
