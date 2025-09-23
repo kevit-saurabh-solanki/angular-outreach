@@ -18,7 +18,7 @@
     <div class="card flex justify-content-center">
         <p-floatLabel>
             <p-dropdown class="dropdown" [options]="messageTypeOption" inputId="float-label"
-                formControlName="messageType"/>
+                formControlName="messageType" />
             <label for="float-label">Select a Message Type</label>
         </p-floatLabel>
 
@@ -45,7 +45,14 @@
     <div class="card flex justify-content-center" *ngIf="messageType?.value === 'Text and Image'">
         <p-floatLabel>
             <input pInputText id="imagePath" formControlName="imagePath" />
-            <label for="imagePath">Upload url</label>
+            <label for="imagePath">Absolute URL</label>
+        </p-floatLabel>
+    </div>
+
+    <div class="card flex justify-content-center" *ngIf="messageType?.value === 'Text and Image'">
+        <p-floatLabel>
+            <input type="file" pInputText id="filePath" formControlName="filePath" />
+            <label for="filePath"></label>
         </p-floatLabel>
     </div>
 

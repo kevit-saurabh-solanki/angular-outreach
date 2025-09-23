@@ -11,13 +11,18 @@
             <p class="detail imagePath">Image:</p>
             <img [src]="message.imagePath" alt="error loading thumbnail" />
         </div>
+        <div *ngIf="message.filePath">
+            <p class="detail imagePath">Image:</p>
+            <img [src]="message.filePath" alt="error loading thumbnail" />
+        </div>
         <p class="detail content">Content: {{message.content}}</p>
         <p class="detail workspaceId">Belongs to Workspace: {{message.workspaceId.name}}</p>
         <p class="detail Created By">Created By: {{message.createdBy.email}}</p>
     </div>
     <div class="action-box">
         <button type="button" class="edit" *ngIf="userRole === 'editor'" (click)="redirectToEdit()">Edit</button>
-        <button type="button" class="delete" *ngIf="userRole === 'editor'" (click)="deleteMessage(message._id)">Delete</button>
-        <button type="button" class="back" (click)="goBack()" >Back</button>
+        <button type="button" class="delete" *ngIf="userRole === 'editor'"
+            (click)="deleteMessage(message._id)">Delete</button>
+        <button type="button" class="back" (click)="goBack()">Back</button>
     </div>
 </div>

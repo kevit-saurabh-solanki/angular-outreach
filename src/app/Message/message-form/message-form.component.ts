@@ -23,7 +23,8 @@ export class MessageFormComponent {
       title: ['', Validators.required],
       messageType: ['', Validators.required],
       content: ['', Validators.required],
-      imagePath: ['']
+      imagePath: [''],
+      filePath: ['']
     });
 
     const id = this.route.snapshot.paramMap.get('id');
@@ -37,7 +38,8 @@ export class MessageFormComponent {
               title: this.message.title,
               messageType: this.message.messageType,
               content: this.message.content,
-              imagePath: this.message.imagePath || ''
+              imagePath: this.message.imagePath || '',
+              filePath: this.message.filePath || ''
             });
           }
         },
@@ -70,15 +72,34 @@ export class MessageFormComponent {
     const formValue = this.messageForm.value;
     const workspaceId = localStorage.getItem('workspaceId');
 
-    const messageToAdd: SendMessageInterface = {
-      title: formValue.title,
-      messageType: formValue.messageType,
-      imagePath: formValue.imagePath || '',
-      content: formValue.content,
-      workspaceId: workspaceId || ''
-    };
+    console.log(formValue.filePath);
 
-    this.messageService.addMessage(messageToAdd).subscribe({
+    // const messageToAdd: SendMessageInterface = {
+    //   title: formValue.title,
+    //   messageType: formValue.messageType,
+    //   imagePath: formValue.imagePath || '',
+    //   filePath: formValue.filePath || '',
+    //   content: formValue.content,
+    //   workspaceId: workspaceId || ''
+    // };
+
+    const formData = new FormData();
+    formData.append('title', formValue.title);
+    formData.append('messageType', formValue.messageType);
+    formData.append('content', formValue.content);
+    formData.append('workspaceId', workspaceId || '');
+
+    if (formValue.imagePath) {
+      formData.append('imagePath', formValue.imagePath);
+    }
+
+    // 👇 append the actual file object from file input
+    const fileInput = (document.getElementById('filePath') as HTMLInputElement);
+    if (fileInput.files && fileInput.files.length > 0) {
+      formData.append('filePath', fileInput.files[0]); // Must match Multer field name
+    }
+
+    this.messageService.addMessage(formData).subscribe({
       next: (result) => {
         this.messageForm.reset();
         this.successMessage = true;
@@ -99,6 +120,8 @@ export class MessageFormComponent {
     const messageToEdit: SendMessageInterface = {
       title: formValue.title,
       messageType: formValue.messageType,
+      filePath: formValue.filePath || '',
+      imagePath: formValue.imagePath || '',
       content: formValue.content,
       workspaceId: workspaceId || ''
     };

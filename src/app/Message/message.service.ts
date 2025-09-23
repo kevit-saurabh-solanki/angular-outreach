@@ -24,7 +24,7 @@ export class MessageService {
         );
     }
 
-    addMessage(message: SendMessageInterface) {
+    addMessage(message: any) {
         return this.http.post(`${this.baseUrl}`, message).pipe(
             catchError(err => throwError(() => err))
         );
