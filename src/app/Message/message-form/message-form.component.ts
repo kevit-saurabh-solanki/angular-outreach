@@ -38,8 +38,7 @@ export class MessageFormComponent {
               title: this.message.title,
               messageType: this.message.messageType,
               content: this.message.content,
-              imagePath: this.message.imagePath || '',
-              filePath: this.message.filePath || ''
+              imagePath: this.message.imagePath || ''
             });
           }
         },
@@ -72,17 +71,6 @@ export class MessageFormComponent {
     const formValue = this.messageForm.value;
     const workspaceId = localStorage.getItem('workspaceId');
 
-    console.log(formValue.filePath);
-
-    // const messageToAdd: SendMessageInterface = {
-    //   title: formValue.title,
-    //   messageType: formValue.messageType,
-    //   imagePath: formValue.imagePath || '',
-    //   filePath: formValue.filePath || '',
-    //   content: formValue.content,
-    //   workspaceId: workspaceId || ''
-    // };
-
     const formData = new FormData();
     formData.append('title', formValue.title);
     formData.append('messageType', formValue.messageType);
@@ -94,9 +82,11 @@ export class MessageFormComponent {
     }
 
     // 👇 append the actual file object from file input
-    const fileInput = (document.getElementById('filePath') as HTMLInputElement);
-    if (fileInput.files && fileInput.files.length > 0) {
-      formData.append('filePath', fileInput.files[0]); // Must match Multer field name
+    if (formValue.filePath) {
+      const fileInput = (document.getElementById('filePath') as HTMLInputElement);
+      if (fileInput.files && fileInput.files.length > 0) {
+        formData.append('filePath', fileInput.files[0]); // Must match Multer field name
+      }
     }
 
     this.messageService.addMessage(formData).subscribe({
@@ -117,20 +107,29 @@ export class MessageFormComponent {
     const formValue = this.messageForm.value;
     const workspaceId = localStorage.getItem('workspaceId');
 
-    const messageToEdit: SendMessageInterface = {
-      title: formValue.title,
-      messageType: formValue.messageType,
-      filePath: formValue.filePath || '',
-      imagePath: formValue.imagePath || '',
-      content: formValue.content,
-      workspaceId: workspaceId || ''
-    };
+    const editFormData = new FormData();
+    editFormData.append('title', formValue.title);
+    editFormData.append('messageType', formValue.messageType);
+    editFormData.append('content', formValue.content);
+    editFormData.append('workspaceId', workspaceId || '');
 
-    this.messageService.editMessage(messageToEdit, this.message._id).subscribe({
+    if (formValue.imagePath) {
+      editFormData.append('imagePath', formValue.imagePath);
+    }
+
+    // 👇 append the actual file object from file input
+    if (formValue.filePath) {
+      const fileInput = (document.getElementById('filePath') as HTMLInputElement);
+      if (fileInput.files && fileInput.files.length > 0) {
+        editFormData.append('filePath', fileInput.files[0]); // Must match Multer field name
+      }
+    }
+
+    this.messageService.editMessage(editFormData, this.message._id).subscribe({
       next: (result) => {
         this.messageForm.reset();
         this.successMessage = true;
-        console.log('Message edited:', result);
+        console.log('Message edited');
       },
       error: (err) => {
         console.error('Error editing message:', err);

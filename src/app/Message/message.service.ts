@@ -30,7 +30,7 @@ export class MessageService {
         );
     }
 
-    editMessage(message: SendMessageInterface, messageId: string) {
+    editMessage(message: any, messageId: string) {
         return this.http.put(`${this.baseUrl}/${messageId}`, message).pipe(
             catchError(err => throwError(() => err))
         );
