@@ -46,7 +46,7 @@ export class DashboardComponent {
         }
       },
       error: (err) => {
-        console.error(err);
+        this.sharedService.handleError(err);
       }
     });
 
@@ -61,7 +61,7 @@ export class DashboardComponent {
         };
       },
       error: (err) => {
-        console.error(err);
+        this.sharedService.handleError(err);
       }
     });
 
@@ -76,7 +76,7 @@ export class DashboardComponent {
         };
       },
       error: (err) => {
-        console.error(err);
+        this.sharedService.handleError(err);
       }
     })
   }
@@ -96,7 +96,7 @@ export class DashboardComponent {
         this.topTags = (res as topTagInterface[]);
       },
       error: (err) => {
-        console.error(err);
+        this.sharedService.handleError(err);
       }
     })
   }

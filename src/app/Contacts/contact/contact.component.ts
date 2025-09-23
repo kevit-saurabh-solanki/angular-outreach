@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { ContactInterface } from '../contact.interface';
 import { ContactsService } from '../contacts.service';
 import { Router } from '@angular/router';
+import { SharedService } from '../../Shared/shared.service';
 
 @Component({
   selector: 'tr[app-contact]',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 export class ContactComponent {
   @Input() contact!: ContactInterface;
   userRole: string = '';
+  private sharedService = inject(SharedService);
 
   constructor(private contactService: ContactsService, private router: Router) { }
 
@@ -32,7 +34,7 @@ export class ContactComponent {
         this.router.navigate(['/contacts']);
       },
       error: (err) => {
-        console.error('Error deleting contact:', err);
+        this.sharedService.handleError(err);
       }
     });
   }

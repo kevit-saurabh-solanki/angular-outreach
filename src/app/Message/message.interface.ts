@@ -3,6 +3,7 @@ export interface MessageInterface {
     title: string;
     messageType: string;
     imagePath?: string;
+    filePath?: string;
     content: string;
 
     workspaceId: {
@@ -24,6 +25,7 @@ export interface SendMessageInterface {
     title: string;
     messageType: string;
     imagePath?: string;
+    filePath?: string;
     content: string;
     workspaceId: string;
 }

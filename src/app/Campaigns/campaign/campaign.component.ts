@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { CampaignInterface } from '../campaign.interface';
 import { CampaignService } from '../campaign.service';
 import { Router } from '@angular/router';
+import { SharedService } from '../../Shared/shared.service';
 
 @Component({
   selector: 'tr[app-campaign]',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 export class CampaignComponent {
   @Input() campaign!: CampaignInterface;
   userRole: string = '';
+  private sharedService = inject(SharedService);
 
   constructor(private campaignService: CampaignService, private router: Router) { }
 
@@ -32,7 +34,7 @@ export class CampaignComponent {
         this.router.navigate(['/campaigns']);
       },
       error: (err) => {
-        console.error('Error deleting campaign:', err);
+        this.sharedService.handleError(err);
       }
     });
   }
@@ -46,7 +48,7 @@ export class CampaignComponent {
         console.log('campaign launched');
       },
       error: (err) => {
-        console.error('Error launching campaign:', err);
+        this.sharedService.handleError(err);
       }
     })
   }
@@ -60,7 +62,7 @@ export class CampaignComponent {
         console.log('campaign Copied');
       },
       error: (err) => {
-        console.error('Error Copying campaign:', err);
+        this.sharedService.handleError(err);
       }
     })
   }

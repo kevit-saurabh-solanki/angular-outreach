@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CampaignService } from '../campaign.service';
 import { CampaignInterface } from '../campaign.interface';
+import { SharedService } from '../../Shared/shared.service';
 
 @Component({
   selector: 'app-campaign-detail',
@@ -11,6 +12,7 @@ import { CampaignInterface } from '../campaign.interface';
 export class CampaignDetailComponent {
   campaign!: CampaignInterface;
   userRole: string = '';
+  private sharedService = inject(SharedService);
 
   constructor(private route: ActivatedRoute, private campaignService: CampaignService, private router: Router) { }
 
@@ -22,7 +24,7 @@ export class CampaignDetailComponent {
           this.campaign = (campaign as CampaignInterface);
         },
         error: (err) => {
-          console.error(err);
+          this.sharedService.handleError(err);
           // optional: redirect if contact not found
           this.router.navigate(['/campaigns']);
         },
@@ -54,7 +56,7 @@ export class CampaignDetailComponent {
         this.router.navigate(['/campaigns']);
       },
       error: (err: any) => {
-        console.error('Error deleting message:', err);
+        this.sharedService.handleError(err);
       }
     });
   }

@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { ContactInterface, SendContactInterface } from '../contact.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ContactsService } from '../contacts.service';
+import { SharedService } from '../../Shared/shared.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -12,9 +13,9 @@ import { ContactsService } from '../contacts.service';
 })
 export class ContactFormComponent {
   contact?: ContactInterface;
-  // @Output() formSumbit = new EventEmitter<SendContactInterface>();
   contactForm!: FormGroup;
   message?: boolean;
+  private sharedService = inject(SharedService);
 
   constructor(private formBuilder: FormBuilder, private routeParam: ActivatedRoute, private location: Location, private contactService: ContactsService) { }
 
@@ -79,7 +80,7 @@ export class ContactFormComponent {
       },
       error: (err) => {
         this.message = false;
-        console.error(err);
+        this.sharedService.handleError(err);
       }
     });
   }
@@ -105,7 +106,7 @@ export class ContactFormComponent {
       },
       error: (err) => {
         this.message = false;
-        console.error(err);
+        this.sharedService.handleError(err);
       }
     });
   }

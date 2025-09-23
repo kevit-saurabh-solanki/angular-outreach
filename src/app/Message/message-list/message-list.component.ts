@@ -24,7 +24,7 @@ export class MessageListComponent {
           return response;
         },
         error: (err) => {
-          console.log(err);
+          this.sharedService.handleError(err);
         }
       })
     })

@@ -24,13 +24,13 @@ export class MessageService {
         );
     }
 
-    addMessage(message: SendMessageInterface) {
+    addMessage(message: any) {
         return this.http.post(`${this.baseUrl}`, message).pipe(
             catchError(err => throwError(() => err))
         );
     }
 
-    editMessage(message: SendMessageInterface, messageId: string) {
+    editMessage(message: any, messageId: string) {
         return this.http.put(`${this.baseUrl}/${messageId}`, message).pipe(
             catchError(err => throwError(() => err))
         );

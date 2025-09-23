@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageInterface, SendMessageInterface } from '../message.interface';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from '../message.service';
 import { Location } from '@angular/common';
+import { SharedService } from '../../Shared/shared.service';
 
 @Component({
   selector: 'app-message-form',
@@ -15,6 +16,7 @@ export class MessageFormComponent {
   message?: MessageInterface;
   messageForm!: FormGroup;
   successMessage?: boolean;
+  private sharedService = inject(SharedService);
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private messageService: MessageService, private location: Location) { }
 
@@ -23,7 +25,8 @@ export class MessageFormComponent {
       title: ['', Validators.required],
       messageType: ['', Validators.required],
       content: ['', Validators.required],
-      imagePath: ['']
+      imagePath: [''],
+      filePath: ['']
     });
 
     const id = this.route.snapshot.paramMap.get('id');
@@ -42,7 +45,7 @@ export class MessageFormComponent {
           }
         },
         error: (err) => {
-          console.error('Error fetching message:', err);
+          this.sharedService.handleError(err);
         }
       });
     }
@@ -70,22 +73,32 @@ export class MessageFormComponent {
     const formValue = this.messageForm.value;
     const workspaceId = localStorage.getItem('workspaceId');
 
-    const messageToAdd: SendMessageInterface = {
-      title: formValue.title,
-      messageType: formValue.messageType,
-      imagePath: formValue.imagePath || '',
-      content: formValue.content,
-      workspaceId: workspaceId || ''
-    };
+    const formData = new FormData();
+    formData.append('title', formValue.title);
+    formData.append('messageType', formValue.messageType);
+    formData.append('content', formValue.content);
+    formData.append('workspaceId', workspaceId || '');
 
-    this.messageService.addMessage(messageToAdd).subscribe({
+    if (formValue.imagePath) {
+      formData.append('imagePath', formValue.imagePath);
+    }
+
+    // 👇 append the actual file object from file input
+    if (formValue.filePath) {
+      const fileInput = (document.getElementById('filePath') as HTMLInputElement);
+      if (fileInput.files && fileInput.files.length > 0) {
+        formData.append('filePath', fileInput.files[0]); // Must match Multer field name
+      }
+    }
+
+    this.messageService.addMessage(formData).subscribe({
       next: (result) => {
         this.messageForm.reset();
         this.successMessage = true;
         console.log('Message added');
       },
       error: (err) => {
-        console.error('Error adding message:', err);
+        this.sharedService.handleError(err);
       }
     });
   }
@@ -96,21 +109,32 @@ export class MessageFormComponent {
     const formValue = this.messageForm.value;
     const workspaceId = localStorage.getItem('workspaceId');
 
-    const messageToEdit: SendMessageInterface = {
-      title: formValue.title,
-      messageType: formValue.messageType,
-      content: formValue.content,
-      workspaceId: workspaceId || ''
-    };
+    const editFormData = new FormData();
+    editFormData.append('title', formValue.title);
+    editFormData.append('messageType', formValue.messageType);
+    editFormData.append('content', formValue.content);
+    editFormData.append('workspaceId', workspaceId || '');
 
-    this.messageService.editMessage(messageToEdit, this.message._id).subscribe({
+    if (formValue.imagePath) {
+      editFormData.append('imagePath', formValue.imagePath);
+    }
+
+    // 👇 append the actual file object from file input
+    if (formValue.filePath) {
+      const fileInput = (document.getElementById('filePath') as HTMLInputElement);
+      if (fileInput.files && fileInput.files.length > 0) {
+        editFormData.append('filePath', fileInput.files[0]); // Must match Multer field name
+      }
+    }
+
+    this.messageService.editMessage(editFormData, this.message._id).subscribe({
       next: (result) => {
         this.messageForm.reset();
         this.successMessage = true;
-        console.log('Message edited:', result);
+        console.log('Message edited');
       },
       error: (err) => {
-        console.error('Error editing message:', err);
+        this.sharedService.handleError(err);
       }
     });
   }

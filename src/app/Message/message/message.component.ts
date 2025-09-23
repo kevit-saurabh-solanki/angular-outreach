@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { MessageInterface } from '../message.interface';
 import { MessageService } from '../message.service';
 import { Router } from '@angular/router';
+import { SharedService } from '../../Shared/shared.service';
 
 @Component({
   selector: 'app-message',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 export class MessageComponent {
   @Input() message!: MessageInterface;
   userRole: string = '';
+  private sharedService = inject(SharedService);
 
   constructor(private messageService: MessageService, private router: Router) { }
 
@@ -32,7 +34,7 @@ export class MessageComponent {
         this.router.navigate(['/messages']);
       },
       error: (err: any) => {
-        console.error('Error deleting message:', err);
+        this.sharedService.handleError(err);
       }
     });
   }
