@@ -43,14 +43,6 @@ export class MenuBarComponent {
   }
 
   onWorkspaceChange(event: any) {
-    // const newWorkspaceId = event.target.value;
-
-    // // Store new workspaceId
-    // localStorage.setItem('workspaceId', newWorkspaceId);
-
-    // // Update local variable if needed
-    // this.selectedWorkspaceId = newWorkspaceId;
-
     const newWorkspaceId = event.target.value;
     this.selectedWorkspaceId = newWorkspaceId;
     this.sharedService.setWorkspace(newWorkspaceId);

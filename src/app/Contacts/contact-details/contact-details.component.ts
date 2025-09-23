@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ContactInterface } from '../contact.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContactsService } from '../contacts.service';
+import { SharedService } from '../../Shared/shared.service';
 
 @Component({
   selector: 'app-contact-details',
@@ -11,6 +12,7 @@ import { ContactsService } from '../contacts.service';
 export class ContactDetailsComponent {
   contact?: ContactInterface;
   userRole: string = '';
+  private sharedService = inject(SharedService)
 
   constructor(
     private route: ActivatedRoute,
@@ -30,7 +32,7 @@ export class ContactDetailsComponent {
           };
         },
         error: (err) => {
-          console.error(err);
+          this.sharedService.handleError(err);
           // optional: redirect if contact not found
           this.router.navigate(['/contacts']);
         },
@@ -63,7 +65,7 @@ export class ContactDetailsComponent {
         this.router.navigate(['/contacts']);
       },
       error: (err) => {
-        console.error('Error deleting contact:', err);
+        this.sharedService.handleError(err);
       }
     });
   }

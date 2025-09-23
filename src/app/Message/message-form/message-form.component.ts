@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageInterface, SendMessageInterface } from '../message.interface';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from '../message.service';
 import { Location } from '@angular/common';
+import { SharedService } from '../../Shared/shared.service';
 
 @Component({
   selector: 'app-message-form',
@@ -15,6 +16,7 @@ export class MessageFormComponent {
   message?: MessageInterface;
   messageForm!: FormGroup;
   successMessage?: boolean;
+  private sharedService = inject(SharedService);
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private messageService: MessageService, private location: Location) { }
 
@@ -43,7 +45,7 @@ export class MessageFormComponent {
           }
         },
         error: (err) => {
-          console.error('Error fetching message:', err);
+          this.sharedService.handleError(err);
         }
       });
     }
@@ -96,7 +98,7 @@ export class MessageFormComponent {
         console.log('Message added');
       },
       error: (err) => {
-        console.error('Error adding message:', err);
+        this.sharedService.handleError(err);
       }
     });
   }
@@ -132,7 +134,7 @@ export class MessageFormComponent {
         console.log('Message edited');
       },
       error: (err) => {
-        console.error('Error editing message:', err);
+        this.sharedService.handleError(err);
       }
     });
   }

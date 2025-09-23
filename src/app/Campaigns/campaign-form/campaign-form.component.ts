@@ -52,7 +52,7 @@ export class CampaignFormComponent {
           }));
         },
         error: (err) => {
-          console.error('Error loading messages', err);
+          this.sharedService.handleError(err);
         }
       });
     });
@@ -71,7 +71,7 @@ export class CampaignFormComponent {
             messageId: this.campaign.messageId
           });
         },
-        error: (err) => console.error('Error loading campaign:', err)
+        error: (err) => this.sharedService.handleError(err)
       });
     }
   }
@@ -120,6 +120,7 @@ export class CampaignFormComponent {
       },
       error: (err) => {
         this.errorMessage = err.error.message;
+        this.sharedService.handleError(err);
       }
     });
   }
@@ -147,6 +148,7 @@ export class CampaignFormComponent {
       },
       error: (err) => {
         this.errorMessage = err.error.message;
+        this.sharedService.handleError(err);
       }
     });
   }

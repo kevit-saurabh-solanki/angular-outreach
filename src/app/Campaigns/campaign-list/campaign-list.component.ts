@@ -41,7 +41,7 @@ export class CampaignListComponent {
           response.totalPages === 0 ? this.totalPages = 1 : this.totalPages = response.totalPages;
         },
         error: (err) => {
-          console.error(err);
+          this.sharedService.handleError(err);
         }
       })
     })

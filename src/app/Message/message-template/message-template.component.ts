@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MessageInterface } from '../message.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from '../message.service';
+import { SharedService } from '../../Shared/shared.service';
 
 @Component({
   selector: 'app-message-template',
@@ -11,6 +12,7 @@ import { MessageService } from '../message.service';
 export class MessageTemplateComponent {
   message?: MessageInterface;
   userRole: string = '';
+  private sharedService = inject(SharedService);
 
   constructor(private router: Router, private messageService: MessageService, private route: ActivatedRoute) { }
 
@@ -22,7 +24,7 @@ export class MessageTemplateComponent {
           this.message = (msg as MessageInterface);
         },
         error: (err) => {
-          console.error('Error fetching message:', err);
+          this.sharedService.handleError(err);
         }
       });
     }
@@ -52,7 +54,7 @@ export class MessageTemplateComponent {
         this.router.navigate(['/messages']);
       },
       error: (err: any) => {
-        console.error('Error deleting message:', err);
+        this.sharedService.handleError(err);
       }
     });
   }
