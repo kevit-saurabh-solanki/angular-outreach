@@ -14,7 +14,10 @@
                 [routerLink]="['/campaigns']"> Campaigns
             </a>
             <a class="menu-item" [class.active]="activeTab === 'message'" [routerLink]="['/messages']"
-                (click)="setActive('message')"> Message 
+                (click)="setActive('message')"> Message
+            </a>
+            <a class="menu-item" [class.active]="activeTab === 'logs'" [routerLink]="['/logs']"
+                (click)="setActive('logs')"> Logs
             </a>
         </div>
         <div class="workspace-box">

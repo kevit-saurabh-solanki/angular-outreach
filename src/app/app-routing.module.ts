@@ -34,6 +34,12 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'logs',
+    loadChildren: () => import('./Logs/logs.module').then(m => m.LogsModule),
+    title: 'Logs',
+    canActivate: [authGuard]
+  },
+  {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'

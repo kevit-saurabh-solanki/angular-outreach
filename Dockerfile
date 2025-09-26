@@ -1,6 +1,4 @@
-ARG NODE_VERSION=22.17.1
-
-FROM node:${NODE_VERSION}
+FROM node:22
 
 ENV NODE_ENV=development
 
@@ -9,7 +7,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Run the application as a non-root user.
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 # Copy the rest of the source files into the image.
 COPY . .
@@ -18,4 +16,4 @@ COPY . .
 EXPOSE 4200
 
 # Run the application.
-CMD ["ng", "serve"]
+CMD ["npx", "ng", "serve", "--host", "0.0.0.0", "--port", "4200"]
