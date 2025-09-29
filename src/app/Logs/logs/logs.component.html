@@ -1,10 +1,10 @@
 <td class="row-item action">{{logs.action}}</td>
 <td class="row-item resource">{{logs.resource}}</td>
 <td class="row-item email">{{logs.actionTakenBy.email}}</td>
-<td>
-    <span *ngIf="logs.actionTakenOn.name">{{logs.actionTakenOn.name}}</span>
-    <span *ngIf="logs.actionTakenOn.phoneNumber">{{logs.actionTakenOn.phoneNumber}}</span>
-    <span *ngIf="logs.actionTakenOn.phoneNumber">{{logs.actionTakenOn.title}}</span>
-</td>
+<!-- <td>
+    <span class="row-item name" *ngIf="logs.actionTakenOn.name">{{logs.actionTakenOn.name}}</span>
+    <span class="row-item phoneNumber" *ngIf="logs.actionTakenOn.phoneNumber">{{logs.actionTakenOn.phoneNumber}}</span>
+    <span class="row-item name" *ngIf="logs.actionTakenOn.title">{{logs.actionTakenOn.title}}</span>
+</td> -->
 <td class="row-item date">{{logs.actionDoneAt | date}}</td>
 

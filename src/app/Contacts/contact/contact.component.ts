@@ -31,7 +31,7 @@ export class ContactComponent {
     this.contactService.deleteContact(contactId).subscribe({
       next: () => {
         console.log('Contact deleted');
-        this.router.navigate(['/contacts']);
+        window.location.reload();
       },
       error: (err) => {
         this.sharedService.handleError(err);
