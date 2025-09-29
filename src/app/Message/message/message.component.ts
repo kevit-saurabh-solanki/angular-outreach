@@ -30,8 +30,7 @@ export class MessageComponent {
 
     this.messageService.deleteMessage(messageId).subscribe({
       next: () => {
-        console.log(`Message ${messageId} deleted`);
-        this.router.navigate(['/messages']);
+        window.location.reload();
       },
       error: (err: any) => {
         this.sharedService.handleError(err);

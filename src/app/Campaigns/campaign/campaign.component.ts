@@ -30,8 +30,7 @@ export class CampaignComponent {
 
     this.campaignService.deleteCampaign(campaignId).subscribe({
       next: () => {
-        console.log('campaign deleted');
-        this.router.navigate(['/campaigns']);
+        window.location.reload();
       },
       error: (err) => {
         this.sharedService.handleError(err);

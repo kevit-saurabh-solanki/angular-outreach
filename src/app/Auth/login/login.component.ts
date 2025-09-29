@@ -12,6 +12,8 @@ import { AuthService } from '../auth.service';
 export class LoginComponent {
   loginForm!: FormGroup;
   invalidCredits?: boolean;
+  page = 1;
+  limit = 10;
 
   constructor(
     private formBuilder: FormBuilder,

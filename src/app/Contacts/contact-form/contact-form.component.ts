@@ -76,7 +76,6 @@ export class ContactFormComponent {
       next: (result) => {
         this.message = true;
         this.contactForm.reset();
-        console.log("Contact added");
       },
       error: (err) => {
         this.message = false;
@@ -102,7 +101,6 @@ export class ContactFormComponent {
       next: (result) => {
         this.message = true;
         this.contactForm.reset();
-        console.log("Contact edited");
       },
       error: (err) => {
         this.message = false;

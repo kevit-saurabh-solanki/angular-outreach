@@ -4,6 +4,7 @@ import { LogsListComponent } from "./logs-list/logs-list.component";
 import { CommonModule } from "@angular/common";
 import { LogsRoutingModule } from "./logs-routing.module";
 import { SharedModule } from "../Shared/shared.module";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
     declarations: [
@@ -13,7 +14,8 @@ import { SharedModule } from "../Shared/shared.module";
     imports: [
         CommonModule,
         LogsRoutingModule,
-        SharedModule
+        SharedModule,
+        HttpClientModule  
     ]
 })
 export class LogsModule {}

@@ -12,7 +12,7 @@ import { SharedService } from '../../Shared/shared.service';
 export class ContactDetailsComponent {
   contact?: ContactInterface;
   userRole: string = '';
-  private sharedService = inject(SharedService)
+  private sharedService = inject(SharedService);
 
   constructor(
     private route: ActivatedRoute,
@@ -61,7 +61,6 @@ export class ContactDetailsComponent {
 
     this.contactService.deleteContact(contactId).subscribe({
       next: () => {
-        console.log('Contact deleted');
         this.router.navigate(['/contacts']);
       },
       error: (err) => {
